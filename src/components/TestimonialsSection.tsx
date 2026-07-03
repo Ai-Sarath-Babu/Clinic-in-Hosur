@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Testimonial } from '../types';
-import { Star, ShieldCheck, Play, ArrowDownCircle, Sparkles, ThumbsUp, Quote } from 'lucide-react';
+import { Star, ShieldCheck, ArrowDownCircle, Sparkles, ThumbsUp, Quote, Instagram, ExternalLink } from 'lucide-react';
 
 interface Props {
   testimonials: Testimonial[];
@@ -9,6 +9,27 @@ interface Props {
 export default function TestimonialsSection({ testimonials }: Props) {
   const [filter, setFilter] = useState<'all' | 'skin' | 'hair'>('all');
   const [visibleCount, setVisibleCount] = useState(6);
+
+  const instagramReels = [
+    {
+      id: 'DOSiucPEgHu',
+      title: 'PRP Hair Regrowth Review',
+      creator: 'Bonitaa Skin & Hair Care',
+      handle: '@bonitaaskinandhaircarehosur'
+    },
+    {
+      id: 'DWtd0YFCEL9',
+      title: 'Acne Scar Transformation',
+      creator: 'Inthumathi Natarajan',
+      handle: '@nammaooru_creator'
+    },
+    {
+      id: 'DPCFysvEqMt',
+      title: 'Clinical Treatment Session',
+      creator: 'Bonitaa Skin & Hair Care',
+      handle: '@bonitaaskinandhaircarehosur'
+    }
+  ];
 
   // Filter reviews
   const filteredTestimonials = testimonials.filter(t => {
@@ -33,37 +54,6 @@ export default function TestimonialsSection({ testimonials }: Props) {
   const handleLoadMore = () => {
     setVisibleCount(prev => Math.min(prev + 6, filteredTestimonials.length));
   };
-
-  // Mock Video stories
-  const videoStories = [
-    {
-      id: 'v1',
-      patientName: 'Ramesh Krishnan',
-      concern: 'Severe Balding',
-      recovery: 'Thick Hair Regrowth',
-      duration: '2m 14s',
-      thumbnail: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=350&q=80',
-      views: '4.2k views'
-    },
-    {
-      id: 'v2',
-      patientName: 'Meera Vasudevan',
-      concern: 'Pitted Acne Scars',
-      recovery: 'Smooth Glass Skin',
-      duration: '1m 45s',
-      thumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=350&q=80',
-      views: '3.8k views'
-    },
-    {
-      id: 'v3',
-      patientName: 'Sanjay Dutt (Hosur)',
-      concern: 'Chronic Dandruff & Fall',
-      recovery: 'Clean Healthy Scalp',
-      duration: '3m 02s',
-      thumbnail: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=350&q=80',
-      views: '5.1k views'
-    }
-  ];
 
   return (
     <div className="space-y-12" id="testimonials">
@@ -100,50 +90,68 @@ export default function TestimonialsSection({ testimonials }: Props) {
         </div>
       </div>
 
-      {/* Video Testimonials Section */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-brand-gold" />
-          <h3 className="text-lg font-bold font-display text-white tracking-tight">Patient Video Testimonials</h3>
+      {/* Patient Video Testimonials (Instagram Reels) */}
+      <div className="space-y-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-brand-gold" />
+              <span className="text-xs font-bold tracking-widest text-brand-gold uppercase">Real Instagram Reels</span>
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold font-display text-white tracking-tight">Patient Video Testimonials</h3>
+            <p className="text-xs md:text-sm text-gray-400 max-w-2xl">
+              Watch real, unfiltered clinical transformations and direct feedback shared on our official Instagram page.
+            </p>
+          </div>
+          
+          <a 
+            href="https://www.instagram.com/bonitaaskinandhaircarehosur/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-orange-500/10 hover:from-pink-500/20 hover:to-orange-500/20 text-xs font-semibold text-white border border-pink-500/30 hover:border-pink-500/50 rounded-xl transition-all self-start md:self-auto shadow-md"
+          >
+            <Instagram className="w-4 h-4 text-pink-500" />
+            <span>Follow us on Instagram</span>
+          </a>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videoStories.map(video => (
+          {instagramReels.map((reel) => (
             <div 
-              key={video.id}
-              className="group relative bg-clinic-card border border-clinic-border rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:border-brand-gold/30 hover:shadow-brand-gold/5"
+              key={reel.id} 
+              className="bg-clinic-card/50 border border-clinic-border rounded-2xl overflow-hidden flex flex-col justify-between hover:border-brand-gold/30 transition-all duration-300 group shadow-lg"
             >
-              {/* Thumbnail Container */}
-              <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.patientName}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter brightness-[0.75]"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-brand-gold text-clinic-dark rounded-full flex items-center justify-center shadow-lg shadow-brand-gold/40 transform transition-all duration-300 group-hover:scale-110">
-                    <Play className="w-5 h-5 fill-clinic-dark ml-0.5" />
-                  </div>
+              <div className="p-4 border-b border-clinic-border flex items-center justify-between">
+                <div>
+                  <h4 className="text-xs font-bold text-white tracking-tight">{reel.title}</h4>
+                  <p className="text-[10px] text-brand-gold font-medium">{reel.creator}</p>
                 </div>
-
-                {/* Duration Tag */}
-                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 rounded text-[10px] text-gray-300 font-mono">
-                  {video.duration}
-                </div>
-
-                {/* Views Tag */}
-                <div className="absolute top-2 left-2 bg-clinic-dark/80 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] text-brand-gold font-medium">
-                  {video.views}
-                </div>
+                <Instagram className="w-4 h-4 text-pink-500 opacity-60 group-hover:opacity-100 transition-opacity" />
               </div>
 
-              {/* Patient and Recovery text */}
-              <div className="p-4 space-y-1 bg-gradient-to-b from-clinic-card to-clinic-dark">
-                <p className="text-xs font-bold text-white uppercase tracking-wider">{video.patientName}</p>
-                <p className="text-sm font-semibold text-brand-gold">{video.recovery}</p>
-                <p className="text-[11px] text-gray-400">Treated for: {video.concern}</p>
+              {/* Instagram Embed Frame */}
+              <div className="relative bg-black/40 h-[480px]">
+                <iframe
+                  src={`https://www.instagram.com/reel/${reel.id}/embed/`}
+                  className="w-full h-full rounded-b-none border-0"
+                  allow="encrypted-media"
+                  scrolling="no"
+                  frameBorder="0"
+                  loading="lazy"
+                ></iframe>
+              </div>
+
+              <div className="p-3 bg-clinic-dark/80 border-t border-clinic-border flex items-center justify-between">
+                <span className="text-[10px] text-gray-400 font-mono">{reel.handle}</span>
+                <a
+                  href={`https://www.instagram.com/reel/${reel.id}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-gold hover:text-white transition-colors"
+                >
+                  <span>Watch on Instagram</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
           ))}
@@ -189,12 +197,9 @@ export default function TestimonialsSection({ testimonials }: Props) {
                 {/* Header info */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img 
-                      src={t.avatarUrl} 
-                      alt={t.name}
-                      className="w-10 h-10 rounded-full object-cover border border-clinic-border"
-                      referrerPolicy="no-referrer"
-                    />
+                    <div className="w-10 h-10 rounded-full bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center font-bold text-xs text-brand-gold select-none">
+                      {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </div>
                     <div>
                       <p className="text-xs font-bold text-white">{t.name}</p>
                       <p className="text-[10px] text-gray-400">{t.city}</p>
