@@ -1,0 +1,8 @@
+{
+  "name": "Best Skin & Hair Care Clinic in Hosur",
+  "description": "Premium, highly CRO-optimized landing page for the Best Skin & Hair Care Clinic in Hosur featuring ₹99 consultation booking, WhatsApp integration, live scarcity timer, and interactive before/after gallery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
