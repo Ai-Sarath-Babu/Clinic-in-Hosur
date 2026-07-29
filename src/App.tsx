@@ -42,6 +42,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import ThankYouPage from './components/ThankYouPage';
 
 // Custom generated high-quality clinic photos imported for production Vite bundler
+import logoImg from './assets/logo.png';
 import clinicHeroImg from './assets/images/clinic_hero_1783064344325.jpg';
 import doctorConsultationImg from './assets/images/doctor_consultation_1783064360130.jpg';
 import skinTreatmentImg from './assets/images/skin_treatment_1783064374170.jpg';
@@ -306,7 +307,7 @@ export default function App() {
           {/* Logo Brand matching the official Bonitaa clinic branding */}
           <a href="#" className="flex items-center group">
             <img 
-              src="/logo.png" 
+              src={logoImg} 
               alt="BONITAA Skin & Hair Care Clinic Hosur Logo" 
               className="h-12 md:h-14 w-auto object-contain p-1 bg-white/5 border border-brand-gold/30 rounded-xl shadow-md shadow-brand-gold/10 group-hover:border-brand-gold/60 transition-all"
             />

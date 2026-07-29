@@ -1,4 +1,9 @@
 import { Treatment, Testimonial, FAQ, BeforeAfterCase } from './types';
+import beforeAfter1 from './assets/before-after-1.jpg';
+import beforeAfter2 from './assets/before-after-2.jpg';
+import beforeAfter3 from './assets/before-after-3.jpg';
+import beforeAfter4 from './assets/before-after-4.jpg';
+import beforeAfter5 from './assets/before-after-5.jpg';
 
 export const skinTreatments: Treatment[] = [
   {
@@ -325,8 +330,8 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     title: 'Acne Scars & Skin Texture Renewal',
     category: 'skin',
     treatmentName: 'MNRF + Fractional CO2 Laser Combo',
-    beforeImg: '/before-after-1.jpg',
-    afterImg: '/before-after-1.jpg',
+    beforeImg: beforeAfter1,
+    afterImg: beforeAfter1,
     details: 'Visible reduction in deep pitted acne scars and uneven texture within 8 weeks.',
     duration: '8 Weeks'
   },
@@ -335,8 +340,8 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     title: 'Hair Regrowth & Density Restoration',
     category: 'hair',
     treatmentName: 'GFC + PRP Hair Growth Therapy',
-    beforeImg: '/before-after-2.jpg',
-    afterImg: '/before-after-2.jpg',
+    beforeImg: beforeAfter2,
+    afterImg: beforeAfter2,
     details: 'Significant regrowth on crown scalp area with increased hair shaft thickness.',
     duration: '12 Weeks'
   },
@@ -345,8 +350,8 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     title: 'Pigmentation & Melasma Clearance',
     category: 'skin',
     treatmentName: 'Q-Switched Laser + Medi-Peel',
-    beforeImg: '/before-after-3.jpg',
-    afterImg: '/before-after-3.jpg',
+    beforeImg: beforeAfter3,
+    afterImg: beforeAfter3,
     details: 'Clearance of stubborn epidermal pigmentation and dark spots with skin tone evening.',
     duration: '6 Weeks'
   },
@@ -355,8 +360,8 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     title: 'Hairline Thinning & Scalp Revitalization',
     category: 'hair',
     treatmentName: 'Advanced Hair Mesotherapy',
-    beforeImg: '/before-after-4.jpg',
-    afterImg: '/before-after-4.jpg',
+    beforeImg: beforeAfter4,
+    afterImg: beforeAfter4,
     details: 'Strengthened hair roots and reduced daily shedding from 150+ to normal strands.',
     duration: '10 Weeks'
   },
@@ -365,8 +370,8 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     title: 'Skin Brightening & Glow Transformation',
     category: 'skin',
     treatmentName: 'Hydra-Facial & Glutathione Glow Therapy',
-    beforeImg: '/before-after-5.jpg',
-    afterImg: '/before-after-5.jpg',
+    beforeImg: beforeAfter5,
+    afterImg: beforeAfter5,
     details: 'Restored skin hydration, instant radiance, and reduced sun tan marks.',
     duration: '4 Weeks'
   }

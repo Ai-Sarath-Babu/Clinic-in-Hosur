@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import logoImg from '../assets/logo.png';
 import { 
   CheckCircle2, 
   Phone, 
@@ -69,7 +70,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
           {/* Logo */}
           <div className="flex justify-center mb-6">
             <img 
-              src="/logo.png" 
+              src={logoImg} 
               alt="BONITAA Skin & Hair Care Clinic Logo" 
               className="h-14 sm:h-16 w-auto object-contain p-1.5 bg-white/5 border border-brand-gold/30 rounded-2xl shadow-lg shadow-brand-gold/10"
             />
