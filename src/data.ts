@@ -321,43 +321,53 @@ export const faqs: FAQ[] = [
 
 export const beforeAfterCases: BeforeAfterCase[] = [
   {
-    id: 'case-acne',
-    title: 'Severe Acne & Scar Correction',
+    id: 'case-skin-1',
+    title: 'Acne Scars & Skin Texture Renewal',
     category: 'skin',
-    treatmentName: 'Acne Laser & Chemical Peel Combo',
-    beforeImg: 'https://images.unsplash.com/photo-1614859324967-bdf461fcf769?auto=format&fit=crop&w=500&q=80', // Styled closeup
-    afterImg: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80',
-    details: '90% reduction in active breakouts and scar depth within 3 months.',
-    duration: '12 Weeks'
-  },
-  {
-    id: 'case-hair',
-    title: 'Crown Baldness & Thinning Recovery',
-    category: 'hair',
-    treatmentName: 'PRP Hair Therapy + GFC (5 Sessions)',
-    beforeImg: 'https://images.unsplash.com/photo-1569956461901-b5e022f4682c?auto=format&fit=crop&w=500&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=500&q=80',
-    details: 'Significant regrowth of dormant follicles and visible hairline thickening.',
-    duration: '16 Weeks'
-  },
-  {
-    id: 'case-pigment',
-    title: 'Stubborn Melasma & Pigmentation',
-    category: 'skin',
-    treatmentName: 'Melasma Peel & Laser Toning',
-    beforeImg: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=500&q=80',
-    details: 'Complete clearance of dark cheek patches and restored uniform skin glow.',
+    treatmentName: 'MNRF + Fractional CO2 Laser Combo',
+    beforeImg: '/before-after-1.jpg',
+    afterImg: '/before-after-1.jpg',
+    details: 'Visible reduction in deep pitted acne scars and uneven texture within 8 weeks.',
     duration: '8 Weeks'
   },
   {
-    id: 'case-hairfall',
-    title: 'Extreme Hair Fall Correction',
+    id: 'case-hair-1',
+    title: 'Hair Regrowth & Density Restoration',
     category: 'hair',
-    treatmentName: 'Hair Root Mesotherapy + Supplements',
-    beforeImg: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=500&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1595959183075-c1d09e37fc16?auto=format&fit=crop&w=500&q=80',
-    details: 'Daily hair shedding reduced from 200+ strands to normal rate (<30 strands).',
+    treatmentName: 'GFC + PRP Hair Growth Therapy',
+    beforeImg: '/before-after-2.jpg',
+    afterImg: '/before-after-2.jpg',
+    details: 'Significant regrowth on crown scalp area with increased hair shaft thickness.',
+    duration: '12 Weeks'
+  },
+  {
+    id: 'case-skin-2',
+    title: 'Pigmentation & Melasma Clearance',
+    category: 'skin',
+    treatmentName: 'Q-Switched Laser + Medi-Peel',
+    beforeImg: '/before-after-3.jpg',
+    afterImg: '/before-after-3.jpg',
+    details: 'Clearance of stubborn epidermal pigmentation and dark spots with skin tone evening.',
     duration: '6 Weeks'
+  },
+  {
+    id: 'case-hair-2',
+    title: 'Hairline Thinning & Scalp Revitalization',
+    category: 'hair',
+    treatmentName: 'Advanced Hair Mesotherapy',
+    beforeImg: '/before-after-4.jpg',
+    afterImg: '/before-after-4.jpg',
+    details: 'Strengthened hair roots and reduced daily shedding from 150+ to normal strands.',
+    duration: '10 Weeks'
+  },
+  {
+    id: 'case-skin-3',
+    title: 'Skin Brightening & Glow Transformation',
+    category: 'skin',
+    treatmentName: 'Hydra-Facial & Glutathione Glow Therapy',
+    beforeImg: '/before-after-5.jpg',
+    afterImg: '/before-after-5.jpg',
+    details: 'Restored skin hydration, instant radiance, and reduced sun tan marks.',
+    duration: '4 Weeks'
   }
 ];

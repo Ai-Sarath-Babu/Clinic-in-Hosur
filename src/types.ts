@@ -24,13 +24,8 @@ export interface FAQ {
 export interface LeadFormInput {
   fullName: string;
   mobileNumber: string;
-  age: string;
-  gender: string;
-  city: string;
-  treatmentInterested: string;
-  preferredDate: string;
+  email: string;
   consultationType: 'Online' | 'In-Clinic';
-  message: string;
 }
 
 export interface BeforeAfterCase {

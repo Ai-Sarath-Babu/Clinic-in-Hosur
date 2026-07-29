@@ -24,7 +24,8 @@ import {
   Award,
   BookmarkCheck,
   Star,
-  Sparkle
+  Sparkle,
+  Mail
 } from 'lucide-react';
 
 import { 
@@ -38,6 +39,7 @@ import {
 import { LeadFormInput } from './types';
 import BeforeAfterSlider from './components/BeforeAfterSlider';
 import TestimonialsSection from './components/TestimonialsSection';
+import ThankYouPage from './components/ThankYouPage';
 
 // Custom generated high-quality clinic photos from assets
 const clinicHeroImg = '/src/assets/images/clinic_hero_1783064344325.jpg';
@@ -50,32 +52,37 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTreatmentTab, setActiveTreatmentTab] = useState<'skin' | 'hair'>('skin');
 
-  // Form states
+  // Main Lead Form state (4 fields: fullName, mobileNumber, email, consultationType)
   const [formData, setFormData] = useState<LeadFormInput>({
     fullName: '',
     mobileNumber: '',
-    age: '',
-    gender: '',
-    city: '',
-    treatmentInterested: '',
-    preferredDate: '',
-    consultationType: 'In-Clinic',
-    message: ''
+    email: '',
+    consultationType: 'In-Clinic'
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Popup Form States
-  const [isExitIntentOpen, setIsExitIntentOpen] = useState(false);
-  const [exitForm, setExitForm] = useState({ name: '', phone: '' });
-  const [isExitSubmitted, setIsExitSubmitted] = useState(false);
-  const [hasShownExit, setHasShownExit] = useState(false);
+  // 10-Second Auto Trigger Popup & Exit Intent Form States
+  const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
+  const [hasShownPopup, setHasShownPopup] = useState(false);
+  const [popupForm, setPopupForm] = useState<LeadFormInput>({
+    fullName: '',
+    mobileNumber: '',
+    email: '',
+    consultationType: 'In-Clinic'
+  });
+  const [isPopupSubmitting, setIsPopupSubmitting] = useState(false);
+  const [isPopupSubmitted, setIsPopupSubmitted] = useState(false);
 
-  const [isScrollPopupOpen, setIsScrollPopupOpen] = useState(false);
-  const [scrollForm, setScrollForm] = useState({ name: '', phone: '' });
-  const [isScrollSubmitted, setIsScrollSubmitted] = useState(false);
-  const [hasShownScroll, setHasShownScroll] = useState(false);
+  // Thank You Page View State
+  const [showThankYouPage, setShowThankYouPage] = useState(false);
+  const [submittedBookingData, setSubmittedBookingData] = useState<LeadFormInput & { referenceId?: string }>({
+    fullName: '',
+    mobileNumber: '',
+    email: '',
+    consultationType: 'In-Clinic'
+  });
 
   // Live Scarcity Indicators
   const [spotsLeft, setSpotsLeft] = useState(7);
@@ -91,28 +98,23 @@ export default function App() {
     const label = 'BONITAA Skin & Hair Care Clinic Hosur';
 
     if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
-      // iOS default Maps app (Apple Maps) with destination directions pre-filled
       setMapsUrl(`maps://?daddr=${lat},${lng}&q=${encodeURIComponent(label)}`);
     } else if (/android/i.test(userAgent)) {
-      // Android default Maps app (Google Maps navigation/directions directly)
       setMapsUrl(`google.navigation:q=${lat},${lng}`);
     } else {
-      // Desktop default fallback (Google Maps Directions)
       setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
     }
   }, []);
 
   // Urgency & Scarcity triggers
   useEffect(() => {
-    // Decrease spots slowly to simulate real-time demand
     const interval = setInterval(() => {
       setSpotsLeft(prev => {
-        if (prev <= 3) return 3; // Keep at least 3 spots to maintain conversion
+        if (prev <= 3) return 3;
         return Math.random() > 0.6 ? prev - 1 : prev;
       });
     }, 45000);
 
-    // Live countdown to midnight
     const calculateTimeLeft = () => {
       const now = new Date();
       const midnight = new Date();
@@ -136,53 +138,48 @@ export default function App() {
     };
   }, []);
 
-  // Exit intent popup detector (mouse leaves top of screen)
+  // Trigger popup 10 seconds after page load
+  useEffect(() => {
+    const popupTimer = setTimeout(() => {
+      if (!hasShownPopup && !isSubmitted && !isPopupSubmitted) {
+        setIsLeadPopupOpen(true);
+        setHasShownPopup(true);
+      }
+    }, 10000); // 10 seconds trigger
+
+    return () => clearTimeout(popupTimer);
+  }, [hasShownPopup, isSubmitted, isPopupSubmitted]);
+
+  // Exit intent popup trigger (mouse leaves top of screen)
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 15 && !hasShownExit && !isSubmitted && !isExitSubmitted) {
-        setIsExitIntentOpen(true);
-        setHasShownExit(true);
+      if (e.clientY <= 15 && !hasShownPopup && !isSubmitted && !isPopupSubmitted) {
+        setIsLeadPopupOpen(true);
+        setHasShownPopup(true);
       }
     };
 
     document.addEventListener('mouseleave', handleMouseLeave);
     return () => document.removeEventListener('mouseleave', handleMouseLeave);
-  }, [hasShownExit, isSubmitted, isExitSubmitted]);
+  }, [hasShownPopup, isSubmitted, isPopupSubmitted]);
 
-  // Scroll popup detector (triggers at 60% scroll)
-  useEffect(() => {
-    const handleScroll = () => {
-      if (hasShownScroll || isSubmitted || isScrollSubmitted) return;
-      
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-
-      if (scrollPercent >= 60) {
-        setIsScrollPopupOpen(true);
-        setHasShownScroll(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasShownScroll, isSubmitted, isScrollSubmitted]);
-
-  // Form submissions
+  // Main Lead Form Submission
   const handleMainSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.mobileNumber) {
-      alert('Please fill out Name and Mobile Number.');
+    if (!formData.fullName || !formData.mobileNumber || !formData.email) {
+      alert('Please fill in Name, Mobile Number, and Email.');
       return;
     }
     
     setIsSubmitting(true);
+    const refId = `BON-${Math.floor(100000 + Math.random() * 900000)}`;
     try {
       const response = await fetch('https://formspree.io/f/xojopbov', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          referenceId: refId,
           source: 'Main Consultation Form',
           timestamp: new Date().toISOString()
         })
@@ -190,17 +187,16 @@ export default function App() {
 
       if (response.ok) {
         setIsSubmitted(true);
-        // Clear forms
+        setSubmittedBookingData({
+          ...formData,
+          referenceId: refId
+        });
+        setShowThankYouPage(true);
         setFormData({
           fullName: '',
           mobileNumber: '',
-          age: '',
-          gender: '',
-          city: '',
-          treatmentInterested: '',
-          preferredDate: '',
-          consultationType: 'In-Clinic',
-          message: ''
+          email: '',
+          consultationType: 'In-Clinic'
         });
       } else {
         throw new Error('Submission failed');
@@ -213,68 +209,67 @@ export default function App() {
     }
   };
 
-  const handleExitSubmit = async (e: FormEvent) => {
+  // Popup Lead Form Submission
+  const handlePopupSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!exitForm.name || !exitForm.phone) return;
-
-    try {
-      await fetch('https://formspree.io/f/xojopbov', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: exitForm.name,
-          mobileNumber: exitForm.phone,
-          source: 'Exit Intent Popup Form',
-          treatmentInterested: '₹99 Consultation Discount Offer',
-          timestamp: new Date().toISOString()
-        })
-      });
-      setIsExitSubmitted(true);
-      setTimeout(() => {
-        setIsExitIntentOpen(false);
-      }, 3000);
-    } catch (err) {
-      console.error(err);
+    if (!popupForm.fullName || !popupForm.mobileNumber || !popupForm.email) {
+      alert('Please fill in Name, Mobile Number, and Email.');
+      return;
     }
-  };
 
-  const handleScrollSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!scrollForm.name || !scrollForm.phone) return;
-
+    setIsPopupSubmitting(true);
+    const refId = `BON-${Math.floor(100000 + Math.random() * 900000)}`;
     try {
-      await fetch('https://formspree.io/f/xojopbov', {
+      const response = await fetch('https://formspree.io/f/xojopbov', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: scrollForm.name,
-          mobileNumber: scrollForm.phone,
-          source: 'Scroll 60% Popup Form',
-          treatmentInterested: 'Free Skin Analysis + ₹99 Consultation',
+          ...popupForm,
+          referenceId: refId,
+          source: '10-Sec Popup Lead Form',
           timestamp: new Date().toISOString()
         })
       });
-      setIsScrollSubmitted(true);
-      setTimeout(() => {
-        setIsScrollPopupOpen(false);
-      }, 3000);
+
+      if (response.ok) {
+        setIsPopupSubmitted(true);
+        setSubmittedBookingData({
+          ...popupForm,
+          referenceId: refId
+        });
+        setIsLeadPopupOpen(false);
+        setShowThankYouPage(true);
+      } else {
+        throw new Error('Submission failed');
+      }
     } catch (err) {
       console.error(err);
+      alert('Something went wrong. Please call directly at 09626615566.');
+    } finally {
+      setIsPopupSubmitting(false);
     }
   };
 
   // Pre-select treatment helper from treating section
-  const handlePreSelectTreatment = (treatmentName: string) => {
-    setFormData(prev => ({
-      ...prev,
-      treatmentInterested: treatmentName
-    }));
-    // Scroll to form smoothly
+  const handlePreSelectTreatment = (_treatmentName: string) => {
     const formElement = document.getElementById('appointment-form');
     if (formElement) {
       formElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (showThankYouPage) {
+    return (
+      <ThankYouPage 
+        bookingData={submittedBookingData}
+        onBackHome={() => {
+          setShowThankYouPage(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        mapsUrl={mapsUrl}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen clinic-grid-bg text-gray-200 font-sans selection:bg-brand-gold selection:text-clinic-dark relative">
@@ -308,19 +303,13 @@ export default function App() {
       {/* 2. Main Navigation Header */}
       <header className="sticky top-0 z-40 bg-clinic-dark/85 backdrop-blur-md border-b border-clinic-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-          {/* Logo Brand matching the image branding */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-gold to-brand-gold-hover flex items-center justify-center shadow-lg shadow-brand-gold/10 border border-brand-gold/30">
-              <span className="font-extrabold font-display text-clinic-dark text-lg tracking-tighter">B</span>
-            </div>
-            <div>
-              <span className="block font-bold font-display text-lg tracking-wider text-white group-hover:text-brand-gold transition-colors">
-                BONITAA<sup className="text-[9px] font-bold text-brand-gold ml-0.5">®</sup>
-              </span>
-              <span className="block text-[8px] tracking-[0.25em] text-brand-gold uppercase -mt-1 font-semibold">
-                Skin and Hair Care
-              </span>
-            </div>
+          {/* Logo Brand matching the official Bonitaa clinic branding */}
+          <a href="#" className="flex items-center group">
+            <img 
+              src="/logo.png" 
+              alt="BONITAA Skin & Hair Care Clinic Hosur Logo" 
+              className="h-12 md:h-14 w-auto object-contain p-1 bg-white/5 border border-brand-gold/30 rounded-xl shadow-md shadow-brand-gold/10 group-hover:border-brand-gold/60 transition-all"
+            />
           </a>
 
           {/* Desktop Nav Items */}
@@ -584,15 +573,9 @@ export default function App() {
                         Thank you! Our dedicated clinical coordinator will contact you within 15 minutes to confirm your ₹99 slot.
                       </p>
                       <div className="pt-2">
-                        <a 
-                          href="https://wa.me/919626615566?text=Hi%2C%20I%20have%20just%20submitted%20the%20form%20for%20%E2%82%B999%20consultation.%20Please%20confirm."
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-gold hover:underline"
-                        >
-                          <MessageSquare className="w-4 h-4" />
-                          <span>Instantly confirm on WhatsApp</span>
-                        </a>
+                        <p className="text-[11px] text-brand-gold font-semibold">
+                          Need immediate assistance? Call us directly at <a href="tel:09626615566" className="underline font-bold">09626615566</a>
+                        </p>
                       </div>
                     </div>
                   ) : (
@@ -640,79 +623,30 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Age & Gender side by side */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                            Age
-                          </label>
+                      {/* Email */}
+                      <div>
+                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
+                          Email Address <span className="text-brand-gold">*</span>
+                        </label>
+                        <div className="relative">
+                          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
+                            <Mail className="w-4 h-4" />
+                          </span>
                           <input
-                            type="number"
-                            min={1}
-                            max={100}
-                            placeholder="e.g. 25"
-                            value={formData.age}
-                            onChange={e => setFormData({...formData, age: e.target.value})}
-                            className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
+                            type="email"
+                            required
+                            placeholder="Enter email address"
+                            value={formData.email}
+                            onChange={e => setFormData({...formData, email: e.target.value})}
+                            className="w-full pl-9 pr-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
                           />
                         </div>
-                        <div>
-                          <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                            Gender
-                          </label>
-                          <select
-                            value={formData.gender}
-                            onChange={e => setFormData({...formData, gender: e.target.value})}
-                            className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white focus:outline-none transition-all"
-                          >
-                            <option value="">Select Gender</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Other">Other</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      {/* City */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          City / Location
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Hosur, Krishnagiri, Shanthi Nagar"
-                          value={formData.city}
-                          onChange={e => setFormData({...formData, city: e.target.value})}
-                          className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                        />
-                      </div>
-
-                      {/* Treatment Interested */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Treatment Interested In
-                        </label>
-                        <select
-                          value={formData.treatmentInterested}
-                          onChange={e => setFormData({...formData, treatmentInterested: e.target.value})}
-                          className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white focus:outline-none transition-all"
-                        >
-                          <option value="">Select Treatment</option>
-                          <option value="Acne/Pimple Treatment">Skin — Acne/Pimple Treatment</option>
-                          <option value="Scar Removal/CO2 Laser">Skin — Scar Removal</option>
-                          <option value="Pigmentation/Melasma">Skin — Pigmentation/Melasma</option>
-                          <option value="Skin Brightening Glow">Skin — Brightening & Glow</option>
-                          <option value="PRP Hair Growth Therapy">Hair — PRP Hair Therapy</option>
-                          <option value="Hair Fall Control">Hair — Hair Fall Treatment</option>
-                          <option value="Dandruff / Scalp Treatment">Hair — Dandruff Treatment</option>
-                          <option value="Hair Transplant Consultation">Hair — Transplant Consultation</option>
-                        </select>
                       </div>
 
                       {/* Consultation Type Toggle Tabs */}
                       <div>
                         <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Consultation Type
+                          Consultation Type <span className="text-brand-gold">*</span>
                         </label>
                         <div className="grid grid-cols-2 gap-2 bg-clinic-dark p-1 rounded-xl border border-clinic-border">
                           <button
@@ -739,34 +673,6 @@ export default function App() {
                             <Video className="w-3.5 h-3.5" />
                             <span>ONLINE</span>
                           </button>
-                        </div>
-                      </div>
-
-                      {/* Date & Message */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                            Preferred Date
-                          </label>
-                          <input
-                            type="date"
-                            value={formData.preferredDate}
-                            min={new Date().toISOString().split('T')[0]}
-                            onChange={e => setFormData({...formData, preferredDate: e.target.value})}
-                            className="w-full px-2.5 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white focus:outline-none transition-all"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                            Special Request
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="e.g. Evening slots"
-                            value={formData.message}
-                            onChange={e => setFormData({...formData, message: e.target.value})}
-                            className="w-full px-2.5 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                          />
                         </div>
                       </div>
 
@@ -1105,16 +1011,6 @@ export default function App() {
               <Phone className="w-4 h-4" />
               <span>Call Now</span>
             </a>
-            
-            <a 
-              href="https://wa.me/919626615566?text=Hi%2C%20I%20want%20to%20book%20a%20%E2%82%B999%20consultation."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all border border-emerald-500/30"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp Now</span>
-            </a>
 
             <a 
               href="#appointment-form"
@@ -1252,12 +1148,12 @@ export default function App() {
 
       {/* 12. Sticky Conversion Bar (Display permanently) */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border py-3 px-4 shadow-xl">
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
           
           {/* Mobile phone click */}
           <a 
             href="tel:09626615566"
-            className="flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-3 bg-clinic-card hover:bg-clinic-border border border-clinic-border rounded-xl text-xs font-bold text-white tracking-tight font-mono shrink-0"
+            className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-clinic-card hover:bg-clinic-border border border-clinic-border rounded-xl text-xs font-bold text-white tracking-tight font-mono shrink-0"
           >
             <Phone className="w-4 h-4 text-brand-gold" />
             <span className="hidden sm:inline">09626615566</span>
@@ -1267,181 +1163,163 @@ export default function App() {
           {/* Core booking CTA */}
           <a 
             href="#appointment-form"
-            className="flex-2 md:flex-1 inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wide rounded-xl transition-all shrink-0 animate-scale-pulse"
+            className="flex-2 inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wide rounded-xl transition-all shrink-0 animate-scale-pulse"
           >
             <Calendar className="w-4 h-4" />
             <span>BOOK ₹99 APPOINTMENT</span>
           </a>
 
-          {/* Whatsapp direct click */}
-          <a 
-            href="https://wa.me/919626615566?text=Hi%2C%20I%20want%20to%20book%20a%20%E2%82%B999%20consultation."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold tracking-tight shrink-0"
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span className="hidden sm:inline">WhatsApp Now</span>
-            <span className="sm:hidden">CHAT</span>
-          </a>
-
         </div>
       </div>
 
-      {/* 13. Exit Intent Popup */}
-      {isExitIntentOpen && (
+      {/* 13. 10-Second Auto Trigger Lead Popup Modal */}
+      {isLeadPopupOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-clinic-card border border-clinic-border rounded-2xl max-w-md w-full overflow-hidden shadow-2xl relative">
             
             <button 
-              onClick={() => setIsExitIntentOpen(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white p-1"
+              onClick={() => setIsLeadPopupOpen(false)}
+              className="absolute top-3 right-3 text-gray-400 hover:text-white p-1 rounded-full hover:bg-clinic-dark transition-colors cursor-pointer"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="p-6 md:p-8 text-center space-y-5">
+            <div className="p-6 md:p-8 space-y-5">
               
-              <div className="w-12 h-12 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Gift className="w-6 h-6 animate-bounce" />
+              <div className="w-12 h-12 bg-brand-gold/10 text-brand-gold border border-brand-gold/20 rounded-full flex items-center justify-center mx-auto">
+                <Sparkles className="w-6 h-6 animate-pulse" />
               </div>
 
-              <div className="space-y-1.5">
-                <h3 className="text-xl font-extrabold font-display text-white">WAIT! DON'T MISS THIS</h3>
-                <p className="text-xs text-brand-gold font-bold uppercase tracking-widest">Secure Your ₹99 consultation slot</p>
+              <div className="text-center space-y-1">
+                <h3 className="text-xl font-extrabold font-display text-white">LIMITED ₹99 CONSULTATION OFFER</h3>
+                <p className="text-xs text-brand-gold font-bold uppercase tracking-widest">Lock Your Special Discount Today</p>
                 <p className="text-xs text-gray-300">
-                  Only 20 promotional ₹99 slots are allocated daily. Leave your details below and we will lock your discount for the next 24 hours.
+                  Fill in your details below to reserve your ₹99 senior dermatologist consultation slot.
                 </p>
               </div>
 
-              {isExitSubmitted ? (
-                <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4 text-center space-y-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-5 h-5 mx-auto" />
-                  <p className="text-xs font-bold text-white">Your ₹99 Offer is Locked!</p>
-                  <p className="text-[10px] text-gray-300">We will text/call you within 15 minutes to lock in your date.</p>
+              {isPopupSubmitted ? (
+                <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-5 text-center space-y-2 text-emerald-400">
+                  <CheckCircle2 className="w-6 h-6 mx-auto" />
+                  <p className="text-sm font-bold text-white">Booking Request Confirmed!</p>
+                  <p className="text-xs text-gray-300">Our coordinator will call or SMS you within 15 minutes to lock in your preferred timing.</p>
                 </div>
               ) : (
-                <form onSubmit={handleExitSubmit} className="space-y-3 text-left">
+                <form onSubmit={handlePopupSubmit} className="space-y-3 text-left">
+                  {/* Full Name */}
                   <div>
-                    <input 
-                      type="text"
-                      required
-                      placeholder="Enter your name"
-                      value={exitForm.name}
-                      onChange={e => setExitForm({...exitForm, name: e.target.value})}
-                      className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                    />
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      Full Name <span className="text-brand-gold">*</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
+                        <User className="w-3.5 h-3.5" />
+                      </span>
+                      <input 
+                        type="text"
+                        required
+                        placeholder="Enter full name"
+                        value={popupForm.fullName}
+                        onChange={e => setPopupForm({...popupForm, fullName: e.target.value})}
+                        className="w-full pl-8 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
+                      />
+                    </div>
                   </div>
+
+                  {/* Mobile Number */}
                   <div>
-                    <input 
-                      type="tel"
-                      required
-                      pattern="[6-9][0-9]{9}"
-                      maxLength={10}
-                      placeholder="Enter 10-digit mobile number"
-                      value={exitForm.phone}
-                      onChange={e => setExitForm({...exitForm, phone: e.target.value.replace(/\D/g, '')})}
-                      className="w-full px-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all font-mono"
-                    />
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      Phone Number <span className="text-brand-gold">*</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none text-xs font-mono font-bold">
+                        +91
+                      </span>
+                      <input 
+                        type="tel"
+                        required
+                        pattern="[6-9][0-9]{9}"
+                        maxLength={10}
+                        placeholder="10-digit mobile number"
+                        value={popupForm.mobileNumber}
+                        onChange={e => setPopupForm({...popupForm, mobileNumber: e.target.value.replace(/\D/g, '')})}
+                        className="w-full pl-10 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      Email Address <span className="text-brand-gold">*</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
+                        <Mail className="w-3.5 h-3.5" />
+                      </span>
+                      <input 
+                        type="email"
+                        required
+                        placeholder="Enter email address"
+                        value={popupForm.email}
+                        onChange={e => setPopupForm({...popupForm, email: e.target.value})}
+                        className="w-full pl-8 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Consultation Type */}
+                  <div>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      Consultation Type <span className="text-brand-gold">*</span>
+                    </label>
+                    <div className="grid grid-cols-2 gap-2 bg-clinic-dark p-1 rounded-xl border border-clinic-border">
+                      <button
+                        type="button"
+                        onClick={() => setPopupForm({...popupForm, consultationType: 'In-Clinic'})}
+                        className={`py-1.5 text-[10px] font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                          popupForm.consultationType === 'In-Clinic'
+                            ? 'bg-clinic-card text-brand-gold border border-clinic-border'
+                            : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <MapPin className="w-3 h-3" />
+                        <span>IN-CLINIC</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPopupForm({...popupForm, consultationType: 'Online'})}
+                        className={`py-1.5 text-[10px] font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                          popupForm.consultationType === 'Online'
+                            ? 'bg-clinic-card text-brand-gold border border-clinic-border'
+                            : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Video className="w-3 h-3" />
+                        <span>ONLINE</span>
+                      </button>
+                    </div>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg"
+                    disabled={isPopupSubmitting}
+                    className="w-full py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg cursor-pointer mt-2"
                   >
-                    LOCK MY ₹99 OFFER NOW
+                    {isPopupSubmitting ? 'PROCESSING...' : 'LOCK MY ₹99 APPOINTMENT'}
                   </button>
                 </form>
               )}
 
-              <p className="text-[9px] text-gray-500">
-                No payment details required. Clear ₹99 directly at the Hosur clinic on consultation.
+              <p className="text-[9px] text-center text-gray-500">
+                No advance payment required. Pay ₹99 directly at the clinic.
               </p>
 
             </div>
           </div>
         </div>
       )}
-
-      {/* 14. Scroll 60% Popup */}
-      {isScrollPopupOpen && (
-        <div className="fixed bottom-24 right-4 z-40 max-w-sm w-full p-4 hidden sm:block">
-          <div className="bg-clinic-card border border-clinic-border rounded-2xl overflow-hidden shadow-2xl relative">
-            
-            <button 
-              onClick={() => setIsScrollPopupOpen(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white p-0.5"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <div className="p-5 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-brand-gold/15 border border-brand-gold/25 flex items-center justify-center text-brand-gold shrink-0">
-                  <Sparkles className="w-5 h-5 animate-spin" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider text-brand-gold font-bold">Unlocking Special Scroll Gift</p>
-                  <h4 className="text-xs font-bold text-white">Free Skin Analysis + ₹99 consultation</h4>
-                </div>
-              </div>
-
-              <p className="text-[11px] text-gray-300 leading-normal">
-                Interested in our procedures? Submit below to claim a <span className="text-brand-gold font-semibold">Free Digital Skin Hydration Analysis</span> alongside your ₹99 consultation!
-              </p>
-
-              {isScrollSubmitted ? (
-                <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-lg p-3 text-center text-emerald-400 text-[11px]">
-                  <CheckCircle2 className="w-4 h-4 mx-auto mb-1" />
-                  <p className="font-bold text-white">Claimed Successfully!</p>
-                  <p className="text-gray-300">We will add this to your appointment registry.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleScrollSubmit} className="space-y-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    <input 
-                      type="text"
-                      required
-                      placeholder="Name"
-                      value={scrollForm.name}
-                      onChange={e => setScrollForm({...scrollForm, name: e.target.value})}
-                      className="w-full px-2.5 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                    />
-                    <input 
-                      type="tel"
-                      required
-                      pattern="[6-9][0-9]{9}"
-                      maxLength={10}
-                      placeholder="Phone"
-                      value={scrollForm.phone}
-                      onChange={e => setScrollForm({...scrollForm, phone: e.target.value.replace(/\D/g, '')})}
-                      className="w-full px-2.5 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none transition-all font-mono"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-2 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-[11px] uppercase tracking-wider rounded-lg transition-all shadow-md"
-                  >
-                    CLAIM FREE ANALYSIS
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 15. Floating WhatsApp Button */}
-      <a 
-        href="https://wa.me/919626615566?text=Hi%2C%20I%20want%20to%20book%20a%20%E2%82%B999%20consultation."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-24 sm:bottom-28 right-6 z-35 w-14 h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-emerald-600/30 transition-transform hover:scale-110 group cursor-pointer"
-        aria-label="Contact us on WhatsApp"
-      >
-        <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-20 group-hover:animate-ping"></div>
-        <MessageSquare className="w-7 h-7 fill-white text-emerald-600" />
-      </a>
 
     </div>
   );

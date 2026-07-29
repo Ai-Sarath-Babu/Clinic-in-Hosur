@@ -90,55 +90,74 @@ export default function BeforeAfterSlider({ cases }: Props) {
             ref={containerRef}
             className="relative w-full max-w-[550px] aspect-[4/3] rounded-2xl overflow-hidden border border-clinic-border bg-clinic-dark select-none shadow-2xl"
           >
-            {/* AFTER Image (Background) */}
-            <img 
-              src={activeCase.afterImg} 
-              alt={`${activeCase.title} - After Treatment`}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute right-4 bottom-4 bg-clinic-dark/80 backdrop-blur-md px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold tracking-wider text-brand-gold border border-brand-gold/20 z-10">
-              AFTER TREATMENT
-            </div>
-
-            {/* BEFORE Image (Foreground clipped) */}
-            <div 
-              className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-              style={{ width: `${sliderPosition}%` }}
-            >
-              <img 
-                src={activeCase.beforeImg} 
-                alt={`${activeCase.title} - Before Treatment`}
-                className="absolute inset-0 w-[550px] h-full object-cover max-w-none pointer-events-none"
-                style={{ width: containerRef.current?.getBoundingClientRect().width || '100%' }}
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="absolute left-4 bottom-4 bg-clinic-dark/80 backdrop-blur-md px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold tracking-wider text-gray-400 border border-clinic-border z-10">
-              BEFORE TREATMENT
-            </div>
-
-            {/* Drag Handle Divider Line */}
-            <div 
-              className="absolute top-0 bottom-0 w-1 bg-brand-gold cursor-ew-resize z-20"
-              style={{ left: `${sliderPosition}%` }}
-              onMouseDown={startDragging}
-              onTouchStart={startDragging}
-            >
-              {/* Drag Handle Circle */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 bg-brand-gold rounded-full flex items-center justify-center shadow-lg shadow-brand-gold/40 border-2 border-clinic-dark select-none pointer-events-none">
-                <div className="flex gap-0.5 text-clinic-dark font-black">
-                  <ChevronLeft className="w-3.5 h-3.5 -mr-1" />
-                  <ChevronRight className="w-3.5 h-3.5" />
+            {/* If beforeImg equals afterImg (single combined clinical photo uploaded) */}
+            {activeCase.beforeImg === activeCase.afterImg ? (
+              <div className="relative w-full h-full flex items-center justify-center bg-black/50">
+                <img 
+                  src={activeCase.beforeImg} 
+                  alt={`${activeCase.title} - Patient Transformation`}
+                  className="w-full h-full object-contain p-1 rounded-2xl"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-4 left-4 bg-clinic-dark/90 backdrop-blur-md px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold tracking-wider text-brand-gold border border-brand-gold/30 z-10 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>ACTUAL CLINICAL PATIENT TRANSFORMATION</span>
                 </div>
               </div>
-            </div>
+            ) : (
+              /* Interactive Split Drag Comparison */
+              <>
+                {/* AFTER Image (Background) */}
+                <img 
+                  src={activeCase.afterImg} 
+                  alt={`${activeCase.title} - After Treatment`}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute right-4 bottom-4 bg-clinic-dark/80 backdrop-blur-md px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold tracking-wider text-brand-gold border border-brand-gold/20 z-10">
+                  AFTER TREATMENT
+                </div>
 
-            {/* Hover tooltip hint */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-1.5 rounded-full text-[10px] text-gray-300 border border-white/10 flex items-center gap-1.5 pointer-events-none animate-pulse">
-              <Eye className="w-3.5 h-3.5 text-brand-gold" />
-              <span>Drag the gold slider center to compare</span>
-            </div>
+                {/* BEFORE Image (Foreground clipped) */}
+                <div 
+                  className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+                  style={{ width: `${sliderPosition}%` }}
+                >
+                  <img 
+                    src={activeCase.beforeImg} 
+                    alt={`${activeCase.title} - Before Treatment`}
+                    className="absolute inset-0 w-[550px] h-full object-cover max-w-none pointer-events-none"
+                    style={{ width: containerRef.current?.getBoundingClientRect().width || '100%' }}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="absolute left-4 bottom-4 bg-clinic-dark/80 backdrop-blur-md px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold tracking-wider text-gray-400 border border-clinic-border z-10">
+                  BEFORE TREATMENT
+                </div>
+
+                {/* Drag Handle Divider Line */}
+                <div 
+                  className="absolute top-0 bottom-0 w-1 bg-brand-gold cursor-ew-resize z-20"
+                  style={{ left: `${sliderPosition}%` }}
+                  onMouseDown={startDragging}
+                  onTouchStart={startDragging}
+                >
+                  {/* Drag Handle Circle */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 bg-brand-gold rounded-full flex items-center justify-center shadow-lg shadow-brand-gold/40 border-2 border-clinic-dark select-none pointer-events-none">
+                    <div className="flex gap-0.5 text-clinic-dark font-black">
+                      <ChevronLeft className="w-3.5 h-3.5 -mr-1" />
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hover tooltip hint */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-1.5 rounded-full text-[10px] text-gray-300 border border-white/10 flex items-center gap-1.5 pointer-events-none animate-pulse">
+                  <Eye className="w-3.5 h-3.5 text-brand-gold" />
+                  <span>Drag the gold slider center to compare</span>
+                </div>
+              </>
+            )}
           </div>
           <p className="text-[11px] text-gray-500 mt-3 text-center">
             *Actual unretouched clinical photos of our real patients. Results may vary depending on individual scalp/skin conditions.
