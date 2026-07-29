@@ -1131,7 +1131,7 @@ export default function App() {
       </section>
 
       {/* 11. Footer Credits */}
-      <footer className="bg-clinic-dark border-t border-clinic-border py-8 px-4 text-center text-xs text-gray-500 space-y-4 safe-pb-page-footer">
+      <footer className="bg-clinic-dark border-t border-clinic-border py-8 px-4 text-center text-xs text-gray-500 space-y-4 safe-pb-page-footer md:pb-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400">
           <p>© 2026 BONITAA Skin & Hair Care Clinic Hosur. All rights reserved.</p>
           <div className="flex gap-4 text-[11px]">
@@ -1146,8 +1146,8 @@ export default function App() {
         </p>
       </footer>
 
-      {/* 12. Sticky Conversion Bar (Display permanently with all-device safe zone) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border pt-3 px-4 safe-pb-bottom-bar shadow-2xl">
+      {/* 12. Sticky Conversion Bar (Mobile & Tablet only, hidden on Desktop) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border pt-3 px-4 safe-pb-bottom-bar shadow-2xl">
         <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
           
           {/* Mobile phone click */}
