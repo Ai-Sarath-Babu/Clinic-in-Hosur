@@ -203,7 +203,7 @@ export default function App() {
       }
     } catch (err) {
       console.error(err);
-      alert('Something went wrong. Please call directly at 09626615566 to book instantly.');
+      alert('Something went wrong. Please call directly at 9626615566 to book instantly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -244,7 +244,7 @@ export default function App() {
       }
     } catch (err) {
       console.error(err);
-      alert('Something went wrong. Please call directly at 09626615566.');
+      alert('Something went wrong. Please call directly at 9626615566.');
     } finally {
       setIsPopupSubmitting(false);
     }
@@ -301,7 +301,7 @@ export default function App() {
       </div>
 
       {/* 2. Main Navigation Header */}
-      <header className="sticky top-0 z-40 bg-clinic-dark/85 backdrop-blur-md border-b border-clinic-border/60">
+      <header className="sticky top-0 z-40 bg-clinic-dark/85 backdrop-blur-md border-b border-clinic-border/60 safe-pt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           {/* Logo Brand matching the official Bonitaa clinic branding */}
           <a href="#" className="flex items-center group">
@@ -324,7 +324,7 @@ export default function App() {
           {/* Direct Actions desktop */}
           <div className="hidden md:flex items-center gap-5">
             <a 
-              href="tel:09626615566" 
+              href="tel:9626615566" 
               className="flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-brand-gold transition-colors"
             >
               <div className="w-8 h-8 rounded-full border border-clinic-border flex items-center justify-center text-brand-gold bg-clinic-card/40">
@@ -332,7 +332,7 @@ export default function App() {
               </div>
               <div className="text-left">
                 <span className="block text-[9px] text-gray-500 uppercase tracking-widest leading-none">Call Specialist</span>
-                <span className="block text-sm font-mono text-white mt-0.5">09626615566</span>
+                <span className="block text-sm font-mono text-white mt-0.5">9626615566</span>
               </div>
             </a>
             
@@ -394,11 +394,11 @@ export default function App() {
             </a>
             <div className="pt-2 border-t border-clinic-border flex flex-col gap-3">
               <a 
-                href="tel:09626615566"
+                href="tel:9626615566"
                 className="flex items-center gap-2 py-2 text-sm font-semibold text-white font-mono"
               >
                 <Phone className="w-4 h-4 text-brand-gold" />
-                <span>09626615566</span>
+                <span>9626615566</span>
               </a>
               <a 
                 href="#appointment-form"
@@ -511,11 +511,11 @@ export default function App() {
                 </a>
 
                 <a 
-                  href="tel:09626615566"
+                  href="tel:9626615566"
                   className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-clinic-border bg-clinic-card/40 hover:bg-clinic-card/80 hover:border-brand-gold/30 text-white font-extrabold text-sm rounded-xl transition-all duration-300"
                 >
                   <Phone className="w-4.5 h-4.5 text-brand-gold" />
-                  <span>CALL: 09626615566</span>
+                  <span>CALL: 9626615566</span>
                 </a>
               </div>
 
@@ -574,7 +574,7 @@ export default function App() {
                       </p>
                       <div className="pt-2">
                         <p className="text-[11px] text-brand-gold font-semibold">
-                          Need immediate assistance? Call us directly at <a href="tel:09626615566" className="underline font-bold">09626615566</a>
+                          Need immediate assistance? Call us directly at <a href="tel:9626615566" className="underline font-bold">9626615566</a>
                         </p>
                       </div>
                     </div>
@@ -994,10 +994,10 @@ export default function App() {
           <div className="bg-clinic-dark/80 border border-clinic-border max-w-md mx-auto p-5 rounded-2xl space-y-2">
             <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none">Instant Clinic Direct Call</p>
             <a 
-              href="tel:09626615566" 
+              href="tel:9626615566" 
               className="block text-2xl md:text-3xl font-bold font-mono text-brand-gold hover:text-brand-gold-hover transition-colors py-1"
             >
-              09626615566
+              9626615566
             </a>
             <p className="text-[10px] text-gray-400">Available from 9:00 AM to 9:00 PM (All 7 Days)</p>
           </div>
@@ -1005,7 +1005,7 @@ export default function App() {
           {/* CTA Group Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
             <a 
-              href="tel:09626615566"
+              href="tel:9626615566"
               className="flex-1 inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all"
             >
               <Phone className="w-4 h-4" />
@@ -1061,7 +1061,7 @@ export default function App() {
                   <div>
                     <p className="text-xs font-bold text-white uppercase tracking-wider">Contact Direct</p>
                     <p className="text-sm font-mono text-brand-gold font-bold mt-0.5">
-                      09626615566
+                      9626615566
                     </p>
                   </div>
                 </div>
@@ -1131,7 +1131,7 @@ export default function App() {
       </section>
 
       {/* 11. Footer Credits */}
-      <footer className="bg-clinic-dark border-t border-clinic-border py-8 px-4 text-center text-xs text-gray-500 space-y-4 pb-28 md:pb-24">
+      <footer className="bg-clinic-dark border-t border-clinic-border py-8 px-4 text-center text-xs text-gray-500 space-y-4 safe-pb-page-footer">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400">
           <p>© 2026 BONITAA Skin & Hair Care Clinic Hosur. All rights reserved.</p>
           <div className="flex gap-4 text-[11px]">
@@ -1146,17 +1146,17 @@ export default function App() {
         </p>
       </footer>
 
-      {/* 12. Sticky Conversion Bar (Display permanently) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border py-3 px-4 shadow-xl">
+      {/* 12. Sticky Conversion Bar (Display permanently with all-device safe zone) */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border pt-3 px-4 safe-pb-bottom-bar shadow-2xl">
         <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
           
           {/* Mobile phone click */}
           <a 
-            href="tel:09626615566"
+            href="tel:9626615566"
             className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-clinic-card hover:bg-clinic-border border border-clinic-border rounded-xl text-xs font-bold text-white tracking-tight font-mono shrink-0"
           >
             <Phone className="w-4 h-4 text-brand-gold" />
-            <span className="hidden sm:inline">09626615566</span>
+            <span className="hidden sm:inline">9626615566</span>
             <span className="sm:hidden">CALL</span>
           </a>
 

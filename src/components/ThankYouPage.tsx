@@ -55,7 +55,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
   }, []);
 
   return (
-    <div className="min-h-screen clinic-grid-bg text-gray-200 font-sans py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+    <div className="min-h-screen clinic-grid-bg text-gray-200 font-sans py-8 px-4 sm:px-6 lg:px-8 safe-pt safe-pb-bottom-bar flex flex-col items-center justify-center">
       
       {/* Container */}
       <div className="max-w-2xl w-full bg-clinic-card border border-clinic-border rounded-3xl overflow-hidden shadow-2xl relative">
@@ -190,7 +190,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
           {/* Direct CTA Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <a 
-              href="tel:09626615566"
+              href="tel:9626615566"
               className="flex items-center justify-center gap-2 px-5 py-3.5 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-brand-gold/20"
             >
               <Phone className="w-4 h-4" />

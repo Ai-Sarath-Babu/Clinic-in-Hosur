@@ -39,6 +39,19 @@
   animation: scale-pulse 2.5s infinite ease-in-out;
 }
 
+/* Device Safe Zone Inset Utilities for All Screens & Notch Heights */
+.safe-pt {
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+}
+
+.safe-pb-bottom-bar {
+  padding-bottom: max(0.75rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)));
+}
+
+.safe-pb-page-footer {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+}
+
 /* Custom scrollbar to keep layout premium */
 ::-webkit-scrollbar {
   width: 8px;
