@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-const logoImg = '/logo.png';
+import logoImg from '../assets/logo.png';
 import { 
   CheckCircle2, 
   Phone, 

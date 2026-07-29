@@ -41,12 +41,12 @@ import BeforeAfterSlider from './components/BeforeAfterSlider';
 import TestimonialsSection from './components/TestimonialsSection';
 import ThankYouPage from './components/ThankYouPage';
 
-// Custom generated high-quality clinic photos from public directory
-const logoImg = '/logo.png';
-const clinicHeroImg = '/clinic_hero.jpg';
-const doctorConsultationImg = '/doctor_consultation.jpg';
-const skinTreatmentImg = '/skin_treatment.jpg';
-const hairTreatmentImg = '/hair_treatment.jpg';
+// Custom generated high-quality clinic photos imported via ESM for Vite production bundler
+import logoImg from './assets/logo.png';
+import clinicHeroImg from './assets/images/clinic_hero.jpg';
+import doctorConsultationImg from './assets/images/doctor_consultation.jpg';
+import skinTreatmentImg from './assets/images/skin_treatment.jpg';
+import hairTreatmentImg from './assets/images/hair_treatment.jpg';
 
 export default function App() {
   // Navigation states
