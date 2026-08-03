@@ -116,7 +116,7 @@ export const whyChooseUsFeatures = [
   },
   {
     title: 'Affordable Pricing',
-    description: 'Premium clinical care shouldn\'t break the bank. Get world-class treatments at fair, transparent, and pocket-friendly pricing starting with ₹99 consultation.'
+    description: 'Premium clinical care shouldn\'t break the bank. Get world-class treatments at fair, transparent, and pocket-friendly pricing starting with a 100% Free consultation.'
   },
   {
     title: 'Online Consultation',
@@ -145,7 +145,7 @@ export const testimonials: Testimonial[] = [
     treatment: 'Acne & Scar Treatment',
     avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80',
     isVerified: true,
-    review: 'I was suffering from severe painful acne for 3 years. After consulting here for just ₹99, the doctor explained the root cause and gave me a 3-month treatment plan. Now my skin is 90% clear and the scars are barely visible! Truly the best dermatologist in Hosur.'
+    review: 'I was suffering from severe painful acne for 3 years. After booking a free consultation here, the doctor explained the root cause and gave me a 3-month treatment plan. Now my skin is 90% clear and the scars are barely visible! Truly the best dermatologist in Hosur.'
   },
   {
     id: '2',
@@ -175,7 +175,7 @@ export const testimonials: Testimonial[] = [
     treatment: 'Hair Regrowth Treatment',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
     isVerified: true,
-    review: 'Travelled from Bangalore border for my hair treatment. The ₹99 consultation offer is 100% genuine. The doctor advised GFC instead of pushing for expensive transplant directly. Highly honest team and great hygiene!'
+    review: 'Travelled from Bangalore border for my hair treatment. The Free consultation offer is 100% genuine. The doctor advised GFC instead of pushing for expensive transplant directly. Highly honest team and great hygiene!'
   },
   {
     id: '5',
@@ -285,14 +285,14 @@ export const testimonials: Testimonial[] = [
     treatment: 'Skin Glow Treatment',
     avatarUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de215f?auto=format&fit=crop&w=120&h=120&q=80',
     isVerified: true,
-    review: 'Best clinic in Shanthi Nagar. The ₹99 consultation got me exactly what I needed. They suggested a simple skin routine that solved all my dry skin issues without putting me on heavy chemicals.'
+    review: 'Best clinic in Shanthi Nagar. The Free consultation got me exactly what I needed. They suggested a simple skin routine that solved all my dry skin issues without putting me on heavy chemicals.'
   }
 ];
 
 export const faqs: FAQ[] = [
   {
-    question: 'Is consultation really ₹99?',
-    answer: 'Yes! Our expert skin and hair consultation is really just ₹99. This includes a complete scalp or facial skin examination with our senior specialist, root-cause diagnosis, treatment assessment, and a personalized treatment roadmap. There are no hidden charges or forced session purchases.'
+    question: 'Is consultation really Free?',
+    answer: 'Yes! Our expert skin and hair consultation is 100% Free for online registrations. This includes a complete scalp or facial skin examination with our senior specialist, root-cause diagnosis, treatment assessment, and a personalized treatment roadmap. There are no hidden charges or forced session purchases.'
   },
   {
     question: 'Do you provide online consultation?',
@@ -320,7 +320,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'What are clinic timings?',
-    answer: 'Our clinic is open all 7 days of the week from 9:00 AM to 9:00 PM. Same-day physical consultations and immediate online video sessions are available. However, due to high demand for the ₹99 offer, pre-booking online is highly recommended to avoid waiting times.'
+    answer: 'Our clinic is open all 7 days of the week from 9:00 AM to 9:00 PM. Same-day physical consultations and immediate online video sessions are available. However, due to high demand for the Free consultation offer, pre-booking online is highly recommended to avoid waiting times.'
   }
 ];
 

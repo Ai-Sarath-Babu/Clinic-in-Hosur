@@ -86,7 +86,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
             Thank You, {bookingData.fullName.split(' ')[0]}!
           </h1>
           <p className="text-xs sm:text-sm text-gray-300 mt-2 max-w-lg mx-auto leading-relaxed">
-            Your ₹99 consultation slot request has been successfully registered with <span className="text-brand-gold font-bold">BONITAA Skin & Hair Care Clinic</span>.
+            Your 100% Free consultation slot request has been successfully registered with <span className="text-brand-gold font-bold">BONITAA Skin & Hair Care Clinic</span>.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
                 <Building2 className="w-4 h-4 text-brand-gold shrink-0" />
                 <div>
                   <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Consultation Mode</p>
-                  <p className="font-semibold text-brand-gold">{bookingData.consultationType} (₹99 Fee)</p>
+                  <p className="font-semibold text-brand-gold">{bookingData.consultationType} (Free Offer)</p>
                 </div>
               </div>
             </div>
@@ -178,9 +178,9 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
                   3
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white">Pay ₹99 Directly At Clinic / On Call</h4>
+                  <h4 className="text-xs font-bold text-white">100% Free Consultation - No Hidden Fees</h4>
                   <p className="text-[11px] text-gray-400 leading-normal mt-0.5">
-                    No upfront digital payment was taken. Pay the ₹99 consultation fee directly when visiting our Hosur clinic or during video consultation.
+                    No payment is required for your initial consultation. Experience expert dermatological diagnosis with complete peace of mind.
                   </p>
                 </div>
               </div>

@@ -40,6 +40,7 @@ import { LeadFormInput } from './types';
 import BeforeAfterSlider from './components/BeforeAfterSlider';
 import TestimonialsSection from './components/TestimonialsSection';
 import ThankYouPage from './components/ThankYouPage';
+import LeadBookingForm from './components/LeadBookingForm';
 
 // Custom generated high-quality clinic photos imported via ESM for Vite production bundler
 import logoImg from './assets/logo.png';
@@ -175,7 +176,7 @@ export default function App() {
     setIsSubmitting(true);
     const refId = `BON-${Math.floor(100000 + Math.random() * 900000)}`;
     try {
-      const response = await fetch('https://formspree.io/f/xojopbov', {
+      const response = await fetch('https://formspree.io/f/xdaryoeg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -221,7 +222,7 @@ export default function App() {
     setIsPopupSubmitting(true);
     const refId = `BON-${Math.floor(100000 + Math.random() * 900000)}`;
     try {
-      const response = await fetch('https://formspree.io/f/xojopbov', {
+      const response = await fetch('https://formspree.io/f/xdaryoeg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -281,7 +282,7 @@ export default function App() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-brand-gold">
               <Gift className="w-3.5 h-3.5" />
-              <span>₹99 Consultation Fee (Offer Active Today)</span>
+              <span>100% Free Consultation Offer (Active Today)</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-brand-gold" />
@@ -406,7 +407,7 @@ export default function App() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full text-center py-2.5 bg-brand-gold text-clinic-dark font-bold rounded-xl text-sm"
               >
-                Book ₹99 Consultation
+                Book Free Consultation
               </a>
             </div>
           </div>
@@ -426,7 +427,7 @@ export default function App() {
               <div className="flex flex-wrap gap-2 items-center">
                 <span className="inline-flex items-center gap-1 text-[10px] md:text-xs bg-brand-gold/15 text-brand-gold border border-brand-gold/25 px-3 py-1 rounded-full font-semibold">
                   <Star className="w-3.5 h-3.5 fill-brand-gold" />
-                  <span>₹99 CONSULTATION FEE (PAY AT CLINIC)</span>
+                  <span>100% FREE CONSULTATION (LIMITED PERIOD)</span>
                 </span>
                 <span className="inline-flex items-center gap-1 text-[10px] md:text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-full font-semibold">
                   <Video className="w-3.5 h-3.5" />
@@ -446,7 +447,7 @@ export default function App() {
                 </h1>
                 
                 <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-xl">
-                  Advanced, FDA-approved clinical solutions for <span className="text-white font-semibold">Warts & Mole Removal</span>, <span className="text-white font-semibold">PRP & GFC Hair Growth</span>, and <span className="text-white font-semibold">Acne Scar treatments</span>. Get treated by senior dermatologists in Hosur. Consultation fee just <span className="text-brand-gold font-bold underline">₹99</span> payable at the clinic.
+                  Advanced, FDA-approved clinical solutions for <span className="text-white font-semibold">Warts & Mole Removal</span>, <span className="text-white font-semibold">PRP & GFC Hair Growth</span>, and <span className="text-white font-semibold">Acne Scar treatments</span>. Get treated by senior dermatologists in Hosur. <span className="text-brand-gold font-bold underline">Free Consultation</span> for all online registrations today.
                 </p>
               </div>
 
@@ -508,7 +509,7 @@ export default function App() {
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-sm rounded-xl transition-all duration-300 shadow-lg shadow-brand-gold/15 cursor-pointer"
                 >
                   <Calendar className="w-4.5 h-4.5" />
-                  <span>BOOK ₹99 CONSULTATION</span>
+                  <span>BOOK FREE CONSULTATION</span>
                 </a>
 
                 <a 
@@ -530,10 +531,10 @@ export default function App() {
                 <div className="bg-gradient-to-r from-brand-gold to-brand-gold-hover text-clinic-dark py-2.5 px-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider">
                   <div className="flex items-center gap-1.5">
                     <Sparkles className="w-4 h-4" />
-                    <span>⚡ ₹99 CONSULTATION APPOINTMENT</span>
+                    <span>⚡ FREE CONSULTATION APPOINTMENT</span>
                   </div>
                   <span className="text-[10px] bg-clinic-dark/15 px-2 py-0.5 rounded font-mono">
-                    Save 75%
+                    100% OFF
                   </span>
                 </div>
 
@@ -541,7 +542,7 @@ export default function App() {
                   <div className="text-center space-y-1">
                     <h3 className="text-xl font-bold text-white font-display">Schedule Consultation</h3>
                     <p className="text-xs text-gray-400">
-                      Senior Dermatologist Fee: <span className="text-brand-gold font-semibold font-mono">₹99</span> <span className="line-through text-gray-600">₹400</span>
+                      Senior Dermatologist Fee: <span className="text-brand-gold font-semibold font-mono">FREE</span> <span className="line-through text-gray-600">₹400</span>
                     </p>
                   </div>
 
@@ -564,141 +565,15 @@ export default function App() {
                   </div>
 
                   {/* Booking Form */}
-                  {isSubmitted ? (
-                    <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-6 text-center space-y-3 py-10">
-                      <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto">
-                        <CheckCircle2 className="w-6 h-6" />
-                      </div>
-                      <h4 className="text-base font-bold text-white">Booking Request Received!</h4>
-                      <p className="text-xs text-gray-300 leading-relaxed">
-                        Thank you! Our dedicated clinical coordinator will contact you within 15 minutes to confirm your ₹99 slot.
-                      </p>
-                      <div className="pt-2">
-                        <p className="text-[11px] text-brand-gold font-semibold">
-                          Need immediate assistance? Call us directly at <a href="tel:9626615566" className="underline font-bold">9626615566</a>
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleMainSubmit} className="space-y-4">
-                      
-                      {/* Name */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Your Full Name <span className="text-brand-gold">*</span>
-                        </label>
-                        <div className="relative">
-                          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
-                            <User className="w-4 h-4" />
-                          </span>
-                          <input
-                            type="text"
-                            required
-                            placeholder="Enter first and last name"
-                            value={formData.fullName}
-                            onChange={e => setFormData({...formData, fullName: e.target.value})}
-                            className="w-full pl-9 pr-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Phone */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Phone Number <span className="text-brand-gold">*</span>
-                        </label>
-                        <div className="relative">
-                          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none text-xs font-mono font-bold">
-                            +91
-                          </span>
-                          <input
-                            type="tel"
-                            required
-                            pattern="[6-9][0-9]{9}"
-                            maxLength={10}
-                            placeholder="Enter 10-digit mobile number"
-                            value={formData.mobileNumber}
-                            onChange={e => setFormData({...formData, mobileNumber: e.target.value.replace(/\D/g, '')})}
-                            className="w-full pl-11 pr-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all font-mono"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Email */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Email Address <span className="text-brand-gold">*</span>
-                        </label>
-                        <div className="relative">
-                          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
-                            <Mail className="w-4 h-4" />
-                          </span>
-                          <input
-                            type="email"
-                            required
-                            placeholder="Enter email address"
-                            value={formData.email}
-                            onChange={e => setFormData({...formData, email: e.target.value})}
-                            className="w-full pl-9 pr-3 py-2.5 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Consultation Type Toggle Tabs */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-                          Consultation Type <span className="text-brand-gold">*</span>
-                        </label>
-                        <div className="grid grid-cols-2 gap-2 bg-clinic-dark p-1 rounded-xl border border-clinic-border">
-                          <button
-                            type="button"
-                            onClick={() => setFormData({...formData, consultationType: 'In-Clinic'})}
-                            className={`py-2 text-[11px] font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                              formData.consultationType === 'In-Clinic'
-                                ? 'bg-clinic-card text-brand-gold border border-clinic-border'
-                                : 'text-gray-400 hover:text-white'
-                            }`}
-                          >
-                            <MapPin className="w-3.5 h-3.5" />
-                            <span>IN-CLINIC</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setFormData({...formData, consultationType: 'Online'})}
-                            className={`py-2 text-[11px] font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                              formData.consultationType === 'Online'
-                                ? 'bg-clinic-card text-brand-gold border border-clinic-border'
-                                : 'text-gray-400 hover:text-white'
-                            }`}
-                          >
-                            <Video className="w-3.5 h-3.5" />
-                            <span>ONLINE</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Submit */}
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full py-3.5 bg-brand-gold hover:bg-brand-gold-hover disabled:bg-gray-700 text-clinic-dark font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-2 cursor-pointer"
-                      >
-                        {isSubmitting ? (
-                          <span>PROCESSING BOOKING...</span>
-                        ) : (
-                          <>
-                            <BookmarkCheck className="w-4.5 h-4.5" />
-                            <span>CONFIRM ₹99 APPOINTMENT</span>
-                          </>
-                        )}
-                      </button>
-
-                      <p className="text-[10px] text-center text-gray-500 leading-normal">
-                        By submitting, you agree to receive a confirmation call/SMS within 15 mins. No upfront payment required. Pay ₹99 directly at the clinic.
-                      </p>
-
-                    </form>
-                  )}
+                  <LeadBookingForm
+                    source="Main Consultation Form"
+                    buttonText="CONFIRM FREE CONSULTATION"
+                    onSuccess={(bookingData) => {
+                      setIsSubmitted(true);
+                      setSubmittedBookingData(bookingData);
+                      setShowThankYouPage(true);
+                    }}
+                  />
 
                 </div>
 
@@ -919,7 +794,7 @@ export default function App() {
             <div className="space-y-3 text-center md:text-left flex-1">
               <h3 className="text-lg font-bold text-white">Discuss Your Condition Directly with an Expert</h3>
               <p className="text-xs text-gray-300 leading-relaxed max-w-2xl">
-                Avoid guessing and self-treatment, which can worsen skin scars and hair thinning. Our senior dermatologist will analyze your scalp/skin health, check medical histories, and give you an honest prescription plan. All for just ₹99.
+                Avoid guessing and self-treatment, which can worsen skin scars and hair thinning. Our senior dermatologist will analyze your scalp/skin health, check medical histories, and give you an honest prescription plan. All 100% Free today.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1">
@@ -941,7 +816,7 @@ export default function App() {
                 href="#appointment-form"
                 className="block text-center px-6 py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all"
               >
-                BOOK ₹99 CONSULTATION
+                BOOK FREE CONSULTATION
               </a>
             </div>
           </div>
@@ -1148,26 +1023,25 @@ export default function App() {
       </footer>
 
       {/* 12. Sticky Conversion Bar (Mobile & Tablet only, hidden on Desktop) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border pt-3 px-4 safe-pb-bottom-bar shadow-2xl">
-        <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-clinic-dark/95 backdrop-blur-md border-t border-clinic-border p-2.5 sm:p-3 safe-pb-bottom-bar shadow-2xl">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-2.5">
           
           {/* Mobile phone click */}
           <a 
             href="tel:9626615566"
-            className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-clinic-card hover:bg-clinic-border border border-clinic-border rounded-xl text-xs font-bold text-white tracking-tight font-mono shrink-0"
+            className="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2.5 bg-clinic-card hover:bg-clinic-border border border-clinic-border rounded-xl text-xs font-bold text-white tracking-tight font-mono shrink-0 active:scale-95 transition-all"
           >
-            <Phone className="w-4 h-4 text-brand-gold" />
-            <span className="hidden sm:inline">9626615566</span>
-            <span className="sm:hidden">CALL</span>
+            <Phone className="w-4 h-4 text-brand-gold shrink-0" />
+            <span className="text-xs sm:text-sm font-bold">9626615566</span>
           </a>
 
           {/* Core booking CTA */}
           <a 
             href="#appointment-form"
-            className="flex-2 inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wide rounded-xl transition-all shrink-0 animate-scale-pulse"
+            className="flex-[1.5] min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-[11px] sm:text-xs uppercase tracking-wider rounded-xl transition-all shrink-0 shadow-lg shadow-brand-gold/20 active:scale-95 animate-scale-pulse"
           >
-            <Calendar className="w-4 h-4" />
-            <span>BOOK ₹99 APPOINTMENT</span>
+            <Calendar className="w-4 h-4 shrink-0" />
+            <span>BOOK FREE SLOT</span>
           </a>
 
         </div>
@@ -1175,147 +1049,44 @@ export default function App() {
 
       {/* 13. 10-Second Auto Trigger Lead Popup Modal */}
       {isLeadPopupOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-clinic-card border border-clinic-border rounded-2xl max-w-md w-full overflow-hidden shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-clinic-card border border-clinic-border rounded-2xl max-w-md w-full my-auto overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col">
             
             <button 
               onClick={() => setIsLeadPopupOpen(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white p-1 rounded-full hover:bg-clinic-dark transition-colors cursor-pointer"
+              className="absolute top-3 right-3 text-gray-400 hover:text-white min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-clinic-dark/80 transition-colors cursor-pointer z-10"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="p-6 md:p-8 space-y-5">
+            <div className="p-5 sm:p-6 md:p-8 space-y-4 overflow-y-auto">
               
-              <div className="w-12 h-12 bg-brand-gold/10 text-brand-gold border border-brand-gold/20 rounded-full flex items-center justify-center mx-auto">
-                <Sparkles className="w-6 h-6 animate-pulse" />
+              <div className="w-12 h-12 bg-brand-gold/10 text-brand-gold border border-brand-gold/20 rounded-full flex items-center justify-center mx-auto shrink-0">
+                <Sparkles className="w-6 h-6 animate-pulse text-brand-gold" />
               </div>
 
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-extrabold font-display text-white">LIMITED ₹99 CONSULTATION OFFER</h3>
-                <p className="text-xs text-brand-gold font-bold uppercase tracking-widest">Lock Your Special Discount Today</p>
+                <h3 className="text-lg sm:text-xl font-extrabold font-display text-white tracking-tight">LIMITED FREE CONSULTATION OFFER</h3>
+                <p className="text-[11px] sm:text-xs text-brand-gold font-bold uppercase tracking-widest">Lock Your Free Slot Today</p>
                 <p className="text-xs text-gray-300">
-                  Fill in your details below to reserve your ₹99 senior dermatologist consultation slot.
+                  Fill in your details below to reserve your 100% Free senior dermatologist consultation slot.
                 </p>
               </div>
 
-              {isPopupSubmitted ? (
-                <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-5 text-center space-y-2 text-emerald-400">
-                  <CheckCircle2 className="w-6 h-6 mx-auto" />
-                  <p className="text-sm font-bold text-white">Booking Request Confirmed!</p>
-                  <p className="text-xs text-gray-300">Our coordinator will call or SMS you within 15 minutes to lock in your preferred timing.</p>
-                </div>
-              ) : (
-                <form onSubmit={handlePopupSubmit} className="space-y-3 text-left">
-                  {/* Full Name */}
-                  <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Full Name <span className="text-brand-gold">*</span>
-                    </label>
-                    <div className="relative">
-                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
-                        <User className="w-3.5 h-3.5" />
-                      </span>
-                      <input 
-                        type="text"
-                        required
-                        placeholder="Enter full name"
-                        value={popupForm.fullName}
-                        onChange={e => setPopupForm({...popupForm, fullName: e.target.value})}
-                        className="w-full pl-8 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Mobile Number */}
-                  <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Phone Number <span className="text-brand-gold">*</span>
-                    </label>
-                    <div className="relative">
-                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none text-xs font-mono font-bold">
-                        +91
-                      </span>
-                      <input 
-                        type="tel"
-                        required
-                        pattern="[6-9][0-9]{9}"
-                        maxLength={10}
-                        placeholder="10-digit mobile number"
-                        value={popupForm.mobileNumber}
-                        onChange={e => setPopupForm({...popupForm, mobileNumber: e.target.value.replace(/\D/g, '')})}
-                        className="w-full pl-10 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all font-mono"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Email Address <span className="text-brand-gold">*</span>
-                    </label>
-                    <div className="relative">
-                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 pointer-events-none">
-                        <Mail className="w-3.5 h-3.5" />
-                      </span>
-                      <input 
-                        type="email"
-                        required
-                        placeholder="Enter email address"
-                        value={popupForm.email}
-                        onChange={e => setPopupForm({...popupForm, email: e.target.value})}
-                        className="w-full pl-8 pr-3 py-2 bg-clinic-dark border border-clinic-border focus:border-brand-gold/60 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Consultation Type */}
-                  <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Consultation Type <span className="text-brand-gold">*</span>
-                    </label>
-                    <div className="grid grid-cols-2 gap-2 bg-clinic-dark p-1 rounded-xl border border-clinic-border">
-                      <button
-                        type="button"
-                        onClick={() => setPopupForm({...popupForm, consultationType: 'In-Clinic'})}
-                        className={`py-1.5 text-[10px] font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                          popupForm.consultationType === 'In-Clinic'
-                            ? 'bg-clinic-card text-brand-gold border border-clinic-border'
-                            : 'text-gray-400 hover:text-white'
-                        }`}
-                      >
-                        <MapPin className="w-3 h-3" />
-                        <span>IN-CLINIC</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setPopupForm({...popupForm, consultationType: 'Online'})}
-                        className={`py-1.5 text-[10px] font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                          popupForm.consultationType === 'Online'
-                            ? 'bg-clinic-card text-brand-gold border border-clinic-border'
-                            : 'text-gray-400 hover:text-white'
-                        }`}
-                      >
-                        <Video className="w-3 h-3" />
-                        <span>ONLINE</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isPopupSubmitting}
-                    className="w-full py-3 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg cursor-pointer mt-2"
-                  >
-                    {isPopupSubmitting ? 'PROCESSING...' : 'LOCK MY ₹99 APPOINTMENT'}
-                  </button>
-                </form>
-              )}
-
-              <p className="text-[9px] text-center text-gray-500">
-                No advance payment required. Pay ₹99 directly at the clinic.
-              </p>
+              <LeadBookingForm
+                source="10-Sec Popup Lead Form"
+                buttonText="LOCK MY FREE CONSULTATION"
+                compact={true}
+                onSuccess={(bookingData) => {
+                  setIsPopupSubmitted(true);
+                  setSubmittedBookingData(bookingData);
+                  setTimeout(() => {
+                    setIsLeadPopupOpen(false);
+                    setShowThankYouPage(true);
+                  }, 1200);
+                }}
+              />
 
             </div>
           </div>
