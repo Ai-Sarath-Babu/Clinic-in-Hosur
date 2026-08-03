@@ -35,10 +35,10 @@ import TestimonialsSection from './components/TestimonialsSection';
 import ThankYouPage from './components/ThankYouPage';
 import LeadBookingForm from './components/LeadBookingForm';
 
-const logoImg = "/bonitaa-skin-hair-clinic-logo.png";
-const doctorConsultationImg = "/result-1.jpeg";
-const skinTreatmentImg = "/result-2.jpeg";
-const hairTreatmentImg = "/result-3.jpeg";
+import logoImg from './assets/bonitaa-skin-hair-clinic-logo.png';
+import doctorConsultationImg from './assets/result-1.jpeg';
+import skinTreatmentImg from './assets/result-2.jpeg';
+import hairTreatmentImg from './assets/result-3.jpeg';
 
 export default function App() {
   // Navigation states
