@@ -1,4 +1,4 @@
-import { Treatment, Testimonial, FAQ, BeforeAfterCase } from './types';
+import { Treatment, Testimonial, BeforeAfterCase } from './types';
 import beforeAfter1 from './assets/before-after-1.jpg';
 import beforeAfter2 from './assets/before-after-2.jpg';
 import beforeAfter3 from './assets/before-after-3.jpg';
@@ -286,41 +286,6 @@ export const testimonials: Testimonial[] = [
     avatarUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de215f?auto=format&fit=crop&w=120&h=120&q=80',
     isVerified: true,
     review: 'Best clinic in Shanthi Nagar. The Free consultation got me exactly what I needed. They suggested a simple skin routine that solved all my dry skin issues without putting me on heavy chemicals.'
-  }
-];
-
-export const faqs: FAQ[] = [
-  {
-    question: 'Is consultation really Free?',
-    answer: 'Yes! Our expert skin and hair consultation is 100% Free for online registrations. This includes a complete scalp or facial skin examination with our senior specialist, root-cause diagnosis, treatment assessment, and a personalized treatment roadmap. There are no hidden charges or forced session purchases.'
-  },
-  {
-    question: 'Do you provide online consultation?',
-    answer: 'Absolutely. We offer online video consultations for patients who are unable to travel to our Hosur clinic or live in remote areas of Krishnagiri, Denkanikottai, and Bangalore outskirts. You will receive a digital prescription that you can use at any local pharmacy.'
-  },
-  {
-    question: 'What treatments do you offer?',
-    answer: 'We provide FDA-approved, scientifically-proven treatments for a wide range of concerns including Acne, Pimples, Scar Remodeling, Pigmentation, Melasma, Anti-Aging, Chemical Peels, Skin Glow Hydration, Hair Fall Control, PRP Therapy, GFC Growth Therapy, Dandruff, and complete Hair Transplant Consultations.'
-  },
-  {
-    question: 'Is PRP painful?',
-    answer: 'No, it is virtually painless. Prior to the therapy, we apply a high-quality medical-grade topical numbing cream to the scalp for 30-40 minutes. You will only feel light, tiny pressure pinches. Most patients comfortably browse their phones or listen to music during the session.'
-  },
-  {
-    question: 'How many sessions are needed?',
-    answer: 'This varies depending on your condition. For skin pigmentation and brightening, visible improvements appear in 3-4 sessions. For hair restoration and PRP/GFC therapies, we recommend a series of 4-6 sessions spaced 3-4 weeks apart to achieve maximum, long-lasting density.'
-  },
-  {
-    question: 'Do you treat hair loss?',
-    answer: 'Yes, we are hair loss experts. We offer a comprehensive multi-pronged approach that includes deep diagnostics, scalp health scaling, PRP (Platelet-Rich Plasma), GFC (Growth Factor Concentrate), Hair Mesotherapy, medical prescriptions to halt DHT, and pre/post-op transplant tracking.'
-  },
-  {
-    question: 'Do you provide skin glow treatments?',
-    answer: 'Yes, we provide advanced skin brightening, hydrating glow peels, glutathione infusions, carbon facials, and customized chemical exfoliation designed specifically to bring back a natural, long-lasting glass skin glow for both men and women.'
-  },
-  {
-    question: 'What are clinic timings?',
-    answer: 'Our clinic is open all 7 days of the week from 9:00 AM to 9:00 PM. Same-day physical consultations and immediate online video sessions are available. However, due to high demand for the Free consultation offer, pre-booking online is highly recommended to avoid waiting times.'
   }
 ];
 

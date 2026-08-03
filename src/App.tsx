@@ -3,29 +3,22 @@ import {
   Phone, 
   ShieldCheck, 
   Sparkles, 
-  User, 
   MapPin, 
   Activity, 
   Video, 
-  AlertCircle, 
   X, 
   Menu, 
   ArrowRight, 
-  ChevronDown, 
   Check, 
   CheckCircle2, 
-  MessageSquare, 
   Calendar, 
-  ThumbsUp, 
   Gift, 
   Map, 
   Stethoscope,
   Users,
   Award,
-  BookmarkCheck,
   Star,
-  Sparkle,
-  Mail
+  Sparkle
 } from 'lucide-react';
 
 import { 
@@ -44,7 +37,6 @@ import LeadBookingForm from './components/LeadBookingForm';
 
 // Custom generated high-quality clinic photos imported via ESM for Vite production bundler
 import logoImg from './assets/logo.png';
-import clinicHeroImg from './assets/images/clinic_hero.jpg';
 import doctorConsultationImg from './assets/images/doctor_consultation.jpg';
 import skinTreatmentImg from './assets/images/skin_treatment.jpg';
 import hairTreatmentImg from './assets/images/hair_treatment.jpg';

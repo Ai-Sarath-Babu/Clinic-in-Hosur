@@ -3,7 +3,6 @@ import { useForm, ValidationError } from '@formspree/react';
 import { 
   User, 
   Mail, 
-  Phone, 
   MapPin, 
   Video, 
   CheckCircle2, 

@@ -24,11 +24,6 @@
   background-position: center;
 }
 
-/* Smooth before/after comparison clip paths */
-.clip-before {
-  clip-path: inset(0 0 0 0);
-}
-
 /* Pulse animation for high-converting interactive targets */
 @keyframes scale-pulse {
   0%, 100% { transform: scale(1); }
