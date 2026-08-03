@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logoImg from '../assets/bonitaa-skin-hair-clinic-logo.png';
+import logoImg from '../assets/bonitaa_clinic_logo.png';
 import { 
   CheckCircle2, 
   Phone, 
