@@ -35,11 +35,10 @@ import TestimonialsSection from './components/TestimonialsSection';
 import ThankYouPage from './components/ThankYouPage';
 import LeadBookingForm from './components/LeadBookingForm';
 
-// Custom generated high-quality clinic photos imported via ESM for Vite production bundler
-import logoImg from './assets/logo.png';
-import doctorConsultationImg from './assets/images/doctor_consultation.jpg';
-import skinTreatmentImg from './assets/images/skin_treatment.jpg';
-import hairTreatmentImg from './assets/images/hair_treatment.jpg';
+const logoImg = "/bonitaa-skin-hair-clinic-logo.png";
+const doctorConsultationImg = "/result-1.jpeg";
+const skinTreatmentImg = "/result-2.jpeg";
+const hairTreatmentImg = "/result-3.jpeg";
 
 export default function App() {
   // Navigation states

@@ -1,9 +1,9 @@
 import { Treatment, Testimonial, BeforeAfterCase } from './types';
-import beforeAfter1 from './assets/before-after-1.jpg';
-import beforeAfter2 from './assets/before-after-2.jpg';
-import beforeAfter3 from './assets/before-after-3.jpg';
-import beforeAfter4 from './assets/before-after-4.jpg';
-import beforeAfter5 from './assets/before-after-5.jpg';
+const beforeAfter1 = "/result-1.jpeg";
+const beforeAfter2 = "/result-2.jpeg";
+const beforeAfter3 = "/result-3.jpeg";
+const beforeAfter4 = "/result-4.jpeg";
+const beforeAfter5 = "/result-5.jpeg";
 
 export const skinTreatments: Treatment[] = [
   {
