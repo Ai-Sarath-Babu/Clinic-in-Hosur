@@ -311,6 +311,7 @@ export default function App() {
               src={logoImg} 
               alt="BONITAA Skin & Hair Care Clinic Hosur Logo" 
               className="h-12 md:h-14 w-auto object-contain p-1 bg-white/5 border border-brand-gold/30 rounded-xl shadow-md shadow-brand-gold/10 group-hover:border-brand-gold/60 transition-all"
+              referrerPolicy="no-referrer"
             />
           </a>
 

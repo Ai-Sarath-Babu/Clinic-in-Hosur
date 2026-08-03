@@ -73,6 +73,7 @@ export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: Thank
               src={logoImg} 
               alt="BONITAA Skin & Hair Care Clinic Logo" 
               className="h-14 sm:h-16 w-auto object-contain p-1.5 bg-white/5 border border-brand-gold/30 rounded-2xl shadow-lg shadow-brand-gold/10"
+              referrerPolicy="no-referrer"
             />
           </div>
 
