@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
-import logoImg from '../assets/bonitaa_clinic_logo.png';
 import { 
   CheckCircle2, 
   Phone, 
-  MapPin, 
-  Calendar, 
-  Clock, 
   Sparkles, 
   ArrowLeft
 } from 'lucide-react';
 import { LeadFormData } from '../types';
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL, CLINIC_NAME } from '../data';
 
 interface ThankYouPageProps {
   data: LeadFormData;
@@ -30,9 +27,10 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => 
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
-              src={logoImg} 
+              src="/assets/bonitaa_clinic_logo.png" 
               alt="Bonitaa Skin & Hair Care Clinic Logo" 
               className="h-10 w-auto object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <button
@@ -133,11 +131,11 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => 
               <p className="text-xs text-gray-400">Call our direct Hosur clinic desk directly:</p>
             </div>
             <a
-              href="tel:+919176335500"
+              href={`tel:${CLINIC_PHONE_INTL}`}
               className="px-5 py-2.5 bg-[#e6b133] hover:bg-[#d2a02b] text-black font-bold rounded-xl text-xs flex items-center gap-2 transition shrink-0"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>+91 91763 35500</span>
+              <span>{CLINIC_PHONE_DISPLAY}</span>
             </a>
           </div>
         </div>
@@ -145,11 +143,11 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => 
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="tel:+919176335500"
+            href={`tel:${CLINIC_PHONE_INTL}`}
             className="px-6 py-3 bg-[#e6b133] hover:bg-[#d2a02b] text-black font-bold rounded-xl text-sm flex items-center gap-2 transition shadow-lg"
           >
             <Phone className="w-4 h-4" />
-            <span>Call Clinic (+91 91763 35500)</span>
+            <span>Call Clinic ({CLINIC_PHONE_DISPLAY})</span>
           </a>
           <button
             onClick={onReset}
@@ -162,7 +160,7 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => 
 
       {/* Footer */}
       <footer className="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500">
-        <p>© {new Date().getFullYear()} Bonitaa Skin & Hair Care Clinic • Hosur. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {CLINIC_NAME} • Hosur. All rights reserved.</p>
       </footer>
     </div>
   );

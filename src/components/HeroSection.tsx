@@ -1,0 +1,363 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Star, 
+  Calendar, 
+  Phone, 
+  Users, 
+  Award, 
+  ShieldCheck, 
+  MapPin, 
+  User, 
+  Mail, 
+  Zap, 
+  Lock, 
+  Laptop, 
+  Building2 
+} from 'lucide-react';
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL } from '../data';
+import { LeadFormData } from '../types';
+
+interface HeroSectionProps {
+  onFormSubmit: (data: LeadFormData) => void;
+  onBookClick: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookClick }) => {
+  const [formData, setFormData] = useState<LeadFormData>({
+    fullName: '',
+    phoneNumber: '',
+    email: '',
+    consultationType: 'IN-CLINIC'
+  });
+
+  const [timeLeft, setTimeLeft] = useState({ hours: 7, minutes: 9, seconds: 59 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        }
+        return { hours: 7, minutes: 30, seconds: 0 };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.fullName || !formData.phoneNumber) {
+      alert('Please fill in your name and phone number.');
+      return;
+    }
+    setIsSubmitting(true);
+    setTimeout(() => {
+      onFormSubmit(formData);
+      setIsSubmitting(false);
+    }, 400);
+  };
+
+  const formatTimer = () => {
+    const h = String(timeLeft.hours).padStart(2, '0');
+    const m = String(timeLeft.minutes).padStart(2, '0');
+    const s = String(timeLeft.seconds).padStart(2, '0');
+    return `${h}:${m}:${s}`;
+  };
+
+  return (
+    <section className="relative pt-8 pb-16 lg:pt-12 lg:pb-24 overflow-hidden">
+      {/* Subtle Background Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#e6b133]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          
+          {/* Left Column (Hero Copy & Trust Metrics) */}
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
+            
+            {/* Badges Row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e6b133]/15 border border-[#e6b133]/40 text-[#e6b133] text-xs font-semibold tracking-wide">
+                <Star className="w-3.5 h-3.5 fill-[#e6b133]" />
+                <span>100% FREE CONSULTATION (LIMITED PERIOD)</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-800/50 text-cyan-400 text-xs font-semibold">
+                <Laptop className="w-3.5 h-3.5" />
+                <span>Online & In-Clinic Available</span>
+              </div>
+            </div>
+
+            {/* Rating Eyebrow */}
+            <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-[#e6b133] uppercase">
+              <div className="flex text-[#e6b133]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-[#e6b133]" />
+                ))}
+              </div>
+              <span>4.9 STAR RATED PATIENT SUCCESS STORIES</span>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
+              Best Skin & Hair <br />
+              Care Clinic in <span className="text-[#e6b133]">Hosur</span>
+            </h1>
+
+            {/* Paragraph Description */}
+            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
+              Advanced, FDA-approved clinical solutions for <strong className="text-white font-semibold">Warts & Mole Removal</strong>, <strong className="text-white font-semibold">PRP & GFC Hair Growth</strong>, and <strong className="text-white font-semibold">Acne Scar Treatments</strong>. Get treated by senior dermatologists in Hosur. Free Consultation for all online registrations today.
+            </p>
+
+            {/* Hashtag Pills */}
+            <div className="flex flex-wrap gap-2 pt-1 text-xs text-zinc-400 font-mono">
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#SkinSpecialistHosur</span>
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#WartsTreatment</span>
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#GFCHairTherapy</span>
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#AcneScarRemodeling</span>
+            </div>
+
+            {/* Stats Metric Row */}
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 pt-3 pb-2 border-y border-zinc-800/80">
+              <div className="text-center sm:text-left">
+                <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
+                  <span>4.9</span>
+                  <Star className="w-4 h-4 fill-[#e6b133] text-[#e6b133]" />
+                </div>
+                <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
+                  PATIENT RATING
+                </div>
+              </div>
+
+              <div className="text-center sm:text-left border-l border-zinc-800/80 pl-3">
+                <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
+                  <Users className="w-4 h-4 text-[#e6b133]" />
+                  <span>1,500+</span>
+                </div>
+                <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
+                  HAPPY PATIENTS
+                </div>
+              </div>
+
+              <div className="text-center sm:text-left border-l border-zinc-800/80 pl-3">
+                <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
+                  <Award className="w-4 h-4 text-[#e6b133]" />
+                  <span>12+ Yrs</span>
+                </div>
+                <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
+                  EXPERT DOCTORS
+                </div>
+              </div>
+
+              <div className="text-center sm:text-left border-t sm:border-t-0 sm:border-l border-zinc-800/80 pt-2 sm:pt-0 pl-0 sm:pl-3 col-span-1 sm:col-span-1">
+                <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
+                  <ShieldCheck className="w-4 h-4 text-[#e6b133]" />
+                  <span>FDA Appr.</span>
+                </div>
+                <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
+                  ADVANCED TECH
+                </div>
+              </div>
+
+              <div className="text-center sm:text-left border-t sm:border-t-0 sm:border-l border-zinc-800/80 pt-2 sm:pt-0 pl-0 sm:pl-3 col-span-2 sm:col-span-1">
+                <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
+                  <MapPin className="w-4 h-4 text-[#e6b133]" />
+                  <span>Hosur</span>
+                </div>
+                <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
+                  SHANTHI NAGAR
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#appointment-form"
+                onClick={onBookClick}
+                className="px-6 py-3.5 rounded-xl bg-[#e6b133] hover:bg-[#d2a02b] text-black font-bold text-sm tracking-wide flex items-center gap-2 transition shadow-lg shadow-[#e6b133]/25 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>BOOK FREE CONSULTATION</span>
+              </a>
+
+              <a
+                href={`tel:${CLINIC_PHONE_INTL}`}
+                className="px-6 py-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-white font-bold text-sm tracking-wide flex items-center gap-2 transition hover:border-zinc-700"
+              >
+                <Phone className="w-4 h-4 text-[#e6b133]" />
+                <span>CALL: {CLINIC_PHONE_DISPLAY}</span>
+              </a>
+            </div>
+
+          </div>
+
+          {/* Right Column (Hero Form Card) */}
+          <div id="appointment-form" className="lg:col-span-5 w-full">
+            <div className="bg-[#121215] border border-zinc-800/90 rounded-2xl p-6 sm:p-7 shadow-2xl relative backdrop-blur-xl">
+              
+              {/* Header Ribbon */}
+              <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#e6b133]">
+                  <Zap className="w-4 h-4 fill-[#e6b133]" />
+                  <span>FREE CONSULTATION APPOINTMENT</span>
+                </div>
+                <div className="px-2 py-0.5 bg-[#e6b133] text-black text-[10px] font-black uppercase rounded tracking-wider">
+                  100% OFF
+                </div>
+              </div>
+
+              {/* Form Title & Pricing */}
+              <div className="pt-4 pb-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Schedule Consultation
+                </h2>
+                <p className="text-xs text-zinc-400 mt-1">
+                  Senior Dermatologist Fee:{' '}
+                  <span className="text-emerald-400 font-bold text-sm ml-1">FREE</span>{' '}
+                  <span className="line-through text-zinc-500 text-xs ml-1">₹400</span>
+                </p>
+              </div>
+
+              {/* Countdown & Slots Counter */}
+              <div className="bg-black/60 rounded-xl p-3 border border-zinc-800/90 grid grid-cols-2 gap-2 text-center mb-5">
+                <div>
+                  <span className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    TIME LEFT TODAY
+                  </span>
+                  <span className="text-sm font-mono font-bold text-[#e6b133] tracking-widest">
+                    {formatTimer()}
+                  </span>
+                </div>
+                <div className="border-l border-zinc-800 pl-2">
+                  <span className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    AVAILABLE SLOTS
+                  </span>
+                  <span className="text-xs font-bold text-rose-400">
+                    Only 7 Appointments Left!
+                  </span>
+                </div>
+              </div>
+
+              {/* Booking Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                
+                {/* Full Name */}
+                <div>
+                  <label className="block text-[11px] font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                    YOUR FULL NAME <span className="text-[#e6b133]">*</span>
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      required
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      placeholder="Enter first and last name"
+                      className="w-full bg-[#18181c] border border-zinc-800 focus:border-[#e6b133] focus:ring-1 focus:ring-[#e6b133] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-zinc-500 outline-none transition"
+                    />
+                  </div>
+                </div>
+
+                {/* Phone Number */}
+                <div>
+                  <label className="block text-[11px] font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                    PHONE NUMBER <span className="text-[#e6b133]">*</span>
+                  </label>
+                  <div className="flex rounded-xl overflow-hidden border border-zinc-800 focus-within:border-[#e6b133] focus-within:ring-1 focus-within:ring-[#e6b133] transition">
+                    <div className="bg-[#1f1f25] px-3.5 py-3 text-xs font-bold text-zinc-300 flex items-center border-r border-zinc-800">
+                      +91
+                    </div>
+                    <input
+                      type="tel"
+                      required
+                      pattern="[0-9]{10}"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                      placeholder="10-digit mobile number"
+                      className="w-full bg-[#18181c] px-4 py-3 text-sm text-white placeholder-zinc-500 outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Email Address */}
+                <div>
+                  <label className="block text-[11px] font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                    EMAIL ADDRESS <span className="text-zinc-500">(OPTIONAL)</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="Enter email address"
+                      className="w-full bg-[#18181c] border border-zinc-800 focus:border-[#e6b133] focus:ring-1 focus:ring-[#e6b133] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-zinc-500 outline-none transition"
+                    />
+                  </div>
+                </div>
+
+                {/* Consultation Type Radio Selection */}
+                <div>
+                  <label className="block text-[11px] font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                    CONSULTATION TYPE <span className="text-[#e6b133]">*</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, consultationType: 'IN-CLINIC' })}
+                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold border transition ${
+                        formData.consultationType === 'IN-CLINIC'
+                          ? 'bg-[#e6b133]/15 border-[#e6b133] text-[#e6b133]'
+                          : 'bg-[#18181c] border-zinc-800 text-zinc-400 hover:text-white'
+                      }`}
+                    >
+                      <Building2 className="w-3.5 h-3.5" />
+                      <span>IN-CLINIC</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, consultationType: 'ONLINE' })}
+                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold border transition ${
+                        formData.consultationType === 'ONLINE'
+                          ? 'bg-[#e6b133]/15 border-[#e6b133] text-[#e6b133]'
+                          : 'bg-[#18181c] border-zinc-800 text-zinc-400 hover:text-white'
+                      }`}
+                    >
+                      <Laptop className="w-3.5 h-3.5" />
+                      <span>ONLINE</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full mt-2 py-3.5 rounded-xl bg-[#e6b133] hover:bg-[#d49f25] text-black font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition shadow-lg shadow-[#e6b133]/20 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+                >
+                  <Lock className="w-4 h-4" />
+                  <span>{isSubmitting ? 'CONFIRMING...' : 'CONFIRM FREE CONSULTATION'}</span>
+                </button>
+
+                {/* Disclaimer */}
+                <p className="text-[10px] text-zinc-400 text-center leading-normal pt-1">
+                  By submitting, you agree to receive a confirmation call/SMS within 15 mins. Limited-time 100% Free Consultation. No payment required.
+                </p>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
