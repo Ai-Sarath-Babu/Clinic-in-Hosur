@@ -4,250 +4,166 @@ import {
   CheckCircle2, 
   Phone, 
   MapPin, 
+  Calendar, 
   Clock, 
-  ArrowLeft, 
-  ShieldCheck, 
   Sparkles, 
-  Mail, 
-  User, 
-  Building2, 
-  FileText,
-  HeartHandshake
+  ArrowLeft
 } from 'lucide-react';
-
-interface BookingData {
-  fullName: string;
-  mobileNumber: string;
-  email: string;
-  consultationType: 'In-Clinic' | 'Online';
-  referenceId?: string;
-}
+import { LeadFormData } from '../types';
 
 interface ThankYouPageProps {
-  bookingData: BookingData;
-  onBackHome: () => void;
-  mapsUrl: string;
+  data: LeadFormData;
+  onReset: () => void;
 }
 
-export default function ThankYouPage({ bookingData, onBackHome, mapsUrl }: ThankYouPageProps) {
-  const refId = bookingData.referenceId || `BON-${Math.floor(100000 + Math.random() * 900000)}`;
-
-  // Google Ads conversion snippet for Submit lead form thank you page
+export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const windowWithGtag = window as unknown as {
-        gtag?: (command: string, action: string, params?: Record<string, unknown>) => void;
-        dataLayer?: unknown[];
-      };
-
-      if (typeof windowWithGtag.gtag === 'function') {
-        windowWithGtag.gtag('event', 'conversion', {
-          'send_to': 'AW-18351602494/qDJLCP-64dccEL723K5E'
-        });
-      } else {
-        windowWithGtag.dataLayer = windowWithGtag.dataLayer || [];
-        windowWithGtag.dataLayer.push({
-          event: 'conversion',
-          send_to: 'AW-18351602494/qDJLCP-64dccEL723K5E'
-        });
-      }
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  return (
-    <div className="min-h-screen clinic-grid-bg text-gray-200 font-sans py-8 px-4 sm:px-6 lg:px-8 safe-pt safe-pb-bottom-bar flex flex-col items-center justify-center">
-      
-      {/* Container */}
-      <div className="max-w-2xl w-full bg-clinic-card border border-clinic-border rounded-3xl overflow-hidden shadow-2xl relative">
-        
-        {/* Top Gold Accent Bar */}
-        <div className="h-2 bg-gradient-to-r from-brand-gold via-amber-400 to-brand-gold" />
+  const refId = Math.floor(100000 + Math.random() * 900000);
 
-        {/* Header Section */}
-        <div className="p-6 sm:p-8 text-center border-b border-clinic-border/60 bg-clinic-dark/40">
-          
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
+  return (
+    <div className="min-h-screen bg-[#09090b] text-white flex flex-col justify-between">
+      {/* Header */}
+      <header className="border-b border-zinc-800 bg-[#0a0a0b]/90 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <img 
               src={logoImg} 
-              alt="BONITAA Skin & Hair Care Clinic Logo" 
-              className="h-14 sm:h-16 w-auto object-contain p-1.5 bg-white/5 border border-brand-gold/30 rounded-2xl shadow-lg shadow-brand-gold/10"
-              referrerPolicy="no-referrer"
+              alt="Bonitaa Skin & Hair Care Clinic Logo" 
+              className="h-10 w-auto object-contain"
             />
           </div>
+          <button
+            onClick={onReset}
+            className="flex items-center gap-2 text-xs font-semibold text-gray-400 hover:text-white transition px-3 py-1.5 rounded-lg border border-zinc-800 hover:border-zinc-700"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Clinic Home</span>
+          </button>
+        </div>
+      </header>
 
-          {/* Success Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4 animate-bounce">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>APPOINTMENT REQUEST CONFIRMED</span>
+      {/* Main Content */}
+      <main className="max-w-3xl mx-auto px-4 py-12 w-full space-y-8 text-center">
+        {/* Success Icon */}
+        <div className="relative inline-block">
+          <div className="w-20 h-20 bg-gradient-to-tr from-[#e6b133]/20 to-[#e6b133]/40 rounded-full flex items-center justify-center mx-auto text-[#e6b133] shadow-2xl border border-[#e6b133]/50">
+            <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
           </div>
+          <div className="absolute -top-1 -right-1 bg-emerald-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+            Confirmed
+          </div>
+        </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-tight">
-            Thank You, {bookingData.fullName.split(' ')[0]}!
+        <div className="space-y-3">
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#e6b133]/15 text-[#e6b133] text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Registration Successful</span>
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Thank You, {data.fullName || 'Valued Patient'}!
           </h1>
-          <p className="text-xs sm:text-sm text-gray-300 mt-2 max-w-lg mx-auto leading-relaxed">
-            Your 100% Free consultation slot request has been successfully registered with <span className="text-brand-gold font-bold">BONITAA Skin & Hair Care Clinic</span>.
+          <p className="text-gray-300 text-base max-w-xl mx-auto">
+            Your appointment request for <span className="text-[#e6b133] font-semibold">{data.consultationType}</span> has been received. Our clinical coordinator in Hosur is preparing your file.
           </p>
         </div>
 
-        {/* Main Content */}
-        <div className="p-6 sm:p-8 space-y-6">
-          
-          {/* Booking Summary Box */}
-          <div className="bg-clinic-dark border border-clinic-border rounded-2xl p-5 space-y-4">
-            <div className="flex items-center justify-between border-b border-clinic-border/60 pb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5 text-brand-gold" />
-                Booking Reference
-              </span>
-              <span className="text-xs font-mono font-bold text-brand-gold px-2.5 py-1 bg-brand-gold/10 border border-brand-gold/30 rounded-lg">
-                #{refId}
-              </span>
+        {/* Confirmation Details Card */}
+        <div className="bg-[#141416] border border-zinc-800 rounded-3xl p-6 sm:p-8 text-left shadow-2xl space-y-6">
+          <div className="flex flex-wrap items-center justify-between pb-4 border-b border-zinc-800 gap-2">
+            <div>
+              <p className="text-xs text-zinc-500 uppercase tracking-wider font-mono">Reference Ticket ID</p>
+              <p className="text-lg font-bold font-mono text-[#e6b133]">#{refId}</p>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="flex items-center gap-2.5 text-gray-300">
-                <User className="w-4 h-4 text-brand-gold shrink-0" />
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Patient Name</p>
-                  <p className="font-semibold text-white">{bookingData.fullName}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-gray-300">
-                <Phone className="w-4 h-4 text-brand-gold shrink-0" />
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Phone Number</p>
-                  <p className="font-semibold text-white font-mono">+91 {bookingData.mobileNumber}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-gray-300">
-                <Mail className="w-4 h-4 text-brand-gold shrink-0" />
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Email Address</p>
-                  <p className="font-semibold text-white truncate max-w-[180px]">{bookingData.email}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-gray-300">
-                <Building2 className="w-4 h-4 text-brand-gold shrink-0" />
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Consultation Mode</p>
-                  <p className="font-semibold text-brand-gold">{bookingData.consultationType} (Free Offer)</p>
-                </div>
-              </div>
+            <div className="text-right">
+              <p className="text-xs text-zinc-500 uppercase tracking-wider font-mono">Consultation Fee</p>
+              <p className="text-lg font-bold text-emerald-400">FREE (₹0.00)</p>
             </div>
           </div>
 
-          {/* Next Steps Timeline */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
-              <Clock className="w-4 h-4" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div className="p-3 bg-black/40 rounded-xl border border-zinc-800/80">
+              <span className="text-xs text-zinc-500 block mb-1">Registered Patient:</span>
+              <span className="font-semibold text-white">{data.fullName}</span>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-zinc-800/80">
+              <span className="text-xs text-zinc-500 block mb-1">Contact Number:</span>
+              <span className="font-semibold text-white">{data.phoneNumber}</span>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-zinc-800/80">
+              <span className="text-xs text-zinc-500 block mb-1">Mode of Consultation:</span>
+              <span className="font-semibold text-[#e6b133]">{data.consultationType}</span>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-zinc-800/80">
+              <span className="text-xs text-zinc-500 block mb-1">Status:</span>
+              <span className="font-semibold text-emerald-400 flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Priority Queue Assigned
+              </span>
+            </div>
+          </div>
+
+          {/* Next Steps */}
+          <div className="space-y-3 pt-2">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">
               What Happens Next?
             </h3>
-
-            <div className="grid grid-cols-1 gap-2.5">
-              
-              <div className="flex items-start gap-3 bg-clinic-dark/60 border border-clinic-border/80 p-3.5 rounded-xl">
-                <div className="w-6 h-6 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                  1
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">Confirmation Call within 15 Minutes</h4>
-                  <p className="text-[11px] text-gray-400 leading-normal mt-0.5">
-                    Our clinical coordinator will call you on <span className="font-mono text-white">+91 {bookingData.mobileNumber}</span> to confirm your preferred time slot and doctor availability.
-                  </p>
-                </div>
+            <div className="space-y-2 text-xs sm:text-sm text-gray-300">
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#e6b133]/20 text-[#e6b133] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
+                <span>Our patient care coordinator will call you to confirm your convenient time slot today.</span>
               </div>
-
-              <div className="flex items-start gap-3 bg-clinic-dark/60 border border-clinic-border/80 p-3.5 rounded-xl">
-                <div className="w-6 h-6 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                  2
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">Senior Dermatologist Consultation</h4>
-                  <p className="text-[11px] text-gray-400 leading-normal mt-0.5">
-                    Meet our certified skin & hair specialist for comprehensive scalp/skin analysis and customized therapy guidance.
-                  </p>
-                </div>
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#e6b133]/20 text-[#e6b133] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
+                <span>You will undergo clinical scalp / skin diagnostics with a senior consultant.</span>
               </div>
-
-              <div className="flex items-start gap-3 bg-clinic-dark/60 border border-clinic-border/80 p-3.5 rounded-xl">
-                <div className="w-6 h-6 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                  3
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">100% Free Consultation - No Hidden Fees</h4>
-                  <p className="text-[11px] text-gray-400 leading-normal mt-0.5">
-                    No payment is required for your initial consultation. Experience expert dermatological diagnosis with complete peace of mind.
-                  </p>
-                </div>
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#e6b133]/20 text-[#e6b133] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
+                <span>Receive a transparent, personalized treatment plan with zero obligation.</span>
               </div>
-
             </div>
           </div>
 
-          {/* Direct CTA Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            <a 
-              href="tel:9626615566"
-              className="flex items-center justify-center gap-2 px-5 py-3.5 bg-brand-gold hover:bg-brand-gold-hover text-clinic-dark font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-brand-gold/20"
-            >
-              <Phone className="w-4 h-4" />
-              <span>CALL CLINIC DIRECTLY</span>
-            </a>
-
-            <a 
-              href={mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-5 py-3.5 bg-clinic-dark hover:bg-clinic-border border border-clinic-border text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all"
-            >
-              <MapPin className="w-4 h-4 text-brand-gold" />
-              <span>GET CLINIC DIRECTIONS</span>
-            </a>
-          </div>
-
-          {/* Clinic Address Footer Box */}
-          <div className="bg-clinic-dark/80 border border-clinic-border p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <div>
-              <p className="text-xs font-bold text-white flex items-center justify-center sm:justify-start gap-1">
-                <MapPin className="w-3.5 h-3.5 text-brand-gold" />
-                BONITAA Skin & Hair Care Clinic
-              </p>
-              <p className="text-[11px] text-gray-400 mt-0.5">
-                Hosur, Tamil Nadu (Open Mon - Sun: 10 AM - 8 PM)
-              </p>
+          {/* Urgent Assistance / Direct Hotline */}
+          <div className="p-4 bg-gradient-to-r from-[#e6b133]/15 to-transparent rounded-2xl border border-[#e6b133]/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-left space-y-0.5">
+              <p className="text-sm font-bold text-white">Need an immediate appointment?</p>
+              <p className="text-xs text-gray-400">Call our direct Hosur clinic desk directly:</p>
             </div>
-            <button
-              onClick={onBackHome}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-gold hover:underline shrink-0 cursor-pointer"
+            <a
+              href="tel:+919176335500"
+              className="px-5 py-2.5 bg-[#e6b133] hover:bg-[#d2a02b] text-black font-bold rounded-xl text-xs flex items-center gap-2 transition shrink-0"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to Home</span>
-            </button>
+              <Phone className="w-3.5 h-3.5" />
+              <span>+91 91763 35500</span>
+            </a>
           </div>
-
-          {/* Trust assurances */}
-          <div className="flex items-center justify-center gap-6 text-[10px] text-gray-400 pt-1">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              100% Confidential
-            </span>
-            <span className="flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-              Certified Dermatologists
-            </span>
-            <span className="flex items-center gap-1">
-              <HeartHandshake className="w-3.5 h-3.5 text-blue-400" />
-              Patient Care Guaranteed
-            </span>
-          </div>
-
         </div>
-      </div>
 
+        {/* Action Buttons */}
+        <div className="flex flex-wrap justify-center gap-4">
+          <a
+            href="tel:+919176335500"
+            className="px-6 py-3 bg-[#e6b133] hover:bg-[#d2a02b] text-black font-bold rounded-xl text-sm flex items-center gap-2 transition shadow-lg"
+          >
+            <Phone className="w-4 h-4" />
+            <span>Call Clinic (+91 91763 35500)</span>
+          </a>
+          <button
+            onClick={onReset}
+            className="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-bold rounded-xl text-sm transition"
+          >
+            Back to Website
+          </button>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500">
+        <p>© {new Date().getFullYear()} Bonitaa Skin & Hair Care Clinic • Hosur. All rights reserved.</p>
+      </footer>
     </div>
   );
-}
+};

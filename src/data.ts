@@ -7,337 +7,192 @@ import beforeAfter5 from './assets/result_5.jpeg';
 
 export const skinTreatments: Treatment[] = [
   {
-    id: 'acne',
-    name: 'Acne Treatment',
-    description: 'Advanced clinical solutions to control active acne breakouts and prevent future recurrences.',
-    benefits: ['Reduces active pimples', 'Controls excess sebum production', 'Prevents permanent scarring']
+    id: 'anti-acne',
+    name: 'Anti Acne Treatment',
+    description: 'Advanced clinical protocols, salicylic peels, and deep pore purification to control active breakouts and prevent future acne.',
+    benefits: ['Clears active acne & pustules', 'Regulates excess sebum secretion', 'Prevents permanent acne scarring']
   },
   {
-    id: 'pimple',
-    name: 'Pimple Treatment',
-    description: 'Targeted deep-pore therapy to clear blackheads, whiteheads, and painful red pustules quickly.',
-    benefits: ['Rapid redness reduction', 'Unclogs congested pores', 'Gentle on sensitive skin']
+    id: 'botox-fillers',
+    name: 'Botox & Fillers',
+    description: 'FDA-approved anti-wrinkle neuromodulators and dermal fillers for natural facial contouring, volume restoration, and wrinkle smoothing.',
+    benefits: ['Smooths dynamic lines & wrinkles', 'Restores lost facial volume', 'Natural, youth-enhancing contouring']
   },
   {
-    id: 'scars',
-    name: 'Scar Removal',
-    description: 'Fractional laser & microneedling treatments to smooth deep pitted scars and uneven skin texture.',
-    benefits: ['Stimulates fresh collagen', 'Fades deep ice-pick scars', 'Improves overall skin elasticity']
+    id: 'mnrf-meso-glow',
+    name: 'MNRF & Meso Glow',
+    description: 'Micro-Needling Fractional Radiofrequency combined with meso vitamin infusions for collagen remodeling and glass-skin radiance.',
+    benefits: ['Tightens pores & smooths pitted scars', 'Stimulates deep collagen synthesis', 'Imparts instant luminous meso glow']
   },
   {
-    id: 'pigmentation',
-    name: 'Pigmentation Treatment',
-    description: 'Dermatological peeling and laser toning to correct dark spots, sun damage, and uneven skin tone.',
-    benefits: ['Fades dark spots', 'Restores uniform complexion', 'Inhibits melanin overproduction']
+    id: 'glutathione-skin',
+    name: 'Glutathione Treatment for Skin',
+    description: 'Medical antioxidant dermal infusions and brightening therapy to correct stubborn hyperpigmentation and reveal an even complexion.',
+    benefits: ['Lightens stubborn hyperpigmentation', 'Neutralizes oxidative damage', 'Improves overall skin luminosity']
   },
   {
-    id: 'melasma',
-    name: 'Melasma Treatment',
-    description: 'Specialized clinical protocols combining topical therapies and gentle peels for stubborn mask-like pigmentation.',
-    benefits: ['Targets deep dermal pigment', 'Evens out skin patches', 'Long-term maintenance plans']
+    id: 'excell-gfc-skin',
+    name: 'Excell GFC Skin',
+    description: 'Next-generation concentrated autologous growth factor therapy for cellular skin renewal, scar healing, and youthful elasticity.',
+    benefits: ['Accelerates cellular skin repair', 'Improves deep dermal texture', 'Rejuvenates tired, aging skin']
   },
   {
-    id: 'chemical-peel',
-    name: 'Chemical Peel',
-    description: 'Medical-grade exfoliating peels to shed dead skin layers and reveal a fresh, glowing complexion underneath.',
-    benefits: ['Smooths fine lines', 'Instantly brightens dull skin', 'Exfoliates dead skin cells']
+    id: 'carbon-laser',
+    name: 'Carbon Laser Therapy',
+    description: 'Hollywood carbon peel laser toning for instant pore tightening, blackhead clearance, and refreshed, glowing skin.',
+    benefits: ['Deeply purifies congested pores', 'Reduces excess oil & blackheads', 'Provides instant red-carpet brightness']
   },
   {
-    id: 'anti-aging',
-    name: 'Anti-Aging Treatment',
-    description: 'Non-surgical skin tightening, wrinkle reduction, and youth-restoring dermal treatments.',
-    benefits: ['Tightens sagging facial skin', 'Softens fine lines & wrinkles', 'Restores natural youthful volume']
-  },
-  {
-    id: 'brightening',
-    name: 'Skin Brightening',
-    description: 'Hydrating dermal infusions and antioxidant therapies to give your skin a luminous, healthy glow.',
-    benefits: ['Deep cellular hydration', 'Boosts natural skin radiance', 'Provides healthy, glass-like skin']
+    id: 'laser-hair-removal',
+    name: 'Full Body Laser Hair Removal',
+    description: 'Painless triple-wavelength diode laser technology for permanent, silky smooth, and ingrown-free skin across all body areas.',
+    benefits: ['Permanent hair reduction', 'Painless cooling tip technology', 'Eliminates ingrown hairs & strawberry skin']
   }
 ];
 
 export const hairTreatments: Treatment[] = [
   {
-    id: 'hair-fall',
-    name: 'Hair Fall Treatment',
-    description: 'Scientific diagnostics and therapies to halt progressive hair thinning and root weakening.',
-    benefits: ['Strengthens hair roots', 'Reduces daily shedding', 'Nourishes scalp follicles']
-  },
-  {
-    id: 'prp',
-    name: 'PRP Hair Therapy',
-    description: 'Platelet-Rich Plasma therapy using your own growth factors to naturally stimulate hair thickness.',
-    benefits: ['Promotes thicker hair shafts', 'Awakens dormant follicles', 'Completely natural procedure']
-  },
-  {
-    id: 'hair-regrowth',
-    name: 'Hair Regrowth',
-    description: 'Advanced GFC (Growth Factor Concentrate) therapy to stimulate active new hair growth in thinning areas.',
-    benefits: ['Accelerates new hair growth', 'Increases active volume density', 'Clinically proven results']
-  },
-  {
-    id: 'dandruff',
-    name: 'Dandruff Treatment',
-    description: 'Medical-grade anti-fungal scalp scaling and clarifying treatments for persistent flaking and itching.',
-    benefits: ['Eliminates stubborn flakes', 'Soothes inflamed scalp itch', 'Restores healthy pH balance']
-  },
-  {
-    id: 'baldness',
-    name: 'Baldness Treatment',
-    description: 'Comprehensive medical management and follicular restoration therapy for pattern baldness (alopecia).',
-    benefits: ['Arrests male & female pattern baldness', 'Preserves existing hair count', 'Dermatologist backed protocol']
-  },
-  {
     id: 'hair-transplant',
-    name: 'Hair Transplant Consultation',
-    description: 'Expert pre-surgical assessment, hairline design, and follicular unit mapping for natural looking transplant results.',
-    benefits: ['Customized hairline drafting', 'Donor area capacity analysis', 'Realistic graft count estimation']
+    name: 'Hair Transplant',
+    description: 'Advanced FUE & FUT surgical hair restoration with microscopic graft mapping for dense, natural-looking permanent hairline regrowth.',
+    benefits: ['Permanent, natural hairline design', 'Maximum graft survival rate', 'Minimal downtime & scarring']
   },
   {
-    id: 'mesotherapy',
-    name: 'Hair Mesotherapy',
-    description: 'Micro-infusions of premium vitamins, minerals, and amino acids directly into the hair root matrix.',
-    benefits: ['Direct nutrient delivery', 'Improves scalp blood circulation', 'Adds natural shine and strength']
-  }
-];
-
-export const whyChooseUsFeatures = [
-  {
-    title: 'Experienced Doctors',
-    description: 'Consult with double-board certified senior dermatologists and hair transplant specialists with 12+ years of experience.'
+    id: 'excell-gfc-hair',
+    name: 'Excell GFC',
+    description: 'High-concentration autologous growth factor concentrate therapy engineered for superior follicle stimulation and rapid density improvement.',
+    benefits: ['Concentrated platelet growth factors', 'Revitalizes dormant hair follicles', 'Significant density improvement in weeks']
   },
   {
-    title: 'Personalized Treatment',
-    description: 'No one-size-fits-all. Get customized prescription plans and clinical therapy schedules tailored specifically for your skin & hair type.'
+    id: 'prp-gfc-hair',
+    name: 'PRP, GFC Therapy',
+    description: 'Combined Platelet-Rich Plasma and GFC protocols to strengthen weak hair roots, thicken thinning strands, and halt shedding.',
+    benefits: ['Dual-action follicular revival', 'Thickens individual hair shafts', '100% natural, autologous procedure']
   },
   {
-    title: 'Latest Technology',
-    description: 'Our clinic uses FDA-approved, cutting-edge lasers, GFC machinery, and digital scalp analyzers for highly precise, safe results.'
+    id: 'anti-dandruff',
+    name: 'Anti Dandruff Treatment',
+    description: 'Medical-grade anti-fungal scalp scaling, clarifying peel therapy, and root purification to eradicate persistent flakes and itchiness.',
+    benefits: ['Eliminates chronic flaking & scaling', 'Relieves stubborn scalp itchiness', 'Restores balanced, healthy scalp microbiome']
   },
   {
-    title: 'Affordable Pricing',
-    description: 'Premium clinical care shouldn\'t break the bank. Get world-class treatments at fair, transparent, and pocket-friendly pricing starting with a 100% Free consultation.'
+    id: 'micro-needling-hair',
+    name: 'Micro Needling (Scalp)',
+    description: 'Precision automated micro-channeling on the scalp to activate hair follicle stem cells and maximize therapeutic serum penetration.',
+    benefits: ['Stimulates dermal papilla stem cells', 'Boosts scalp blood circulation', 'Enhances peptide & minoxidil absorption']
   },
   {
-    title: 'Online Consultation',
-    description: 'Busy schedule or living outside Hosur? Connect with our top specialists from the comfort of your home via HD video consultations.'
+    id: 'low-level-laser-hair',
+    name: 'Low Level Laser Hair Therapy',
+    description: 'FDA-cleared cold laser photobiomodulation (LLLT) to stimulate cellular ATP synthesis and energize weak, miniaturized follicles.',
+    benefits: ['Clinically proven LLLT cold laser', 'Increases cellular energy & blood flow', 'Non-invasive, painless sessions']
   },
   {
-    title: 'Same Day Appointment',
-    description: 'Instant clinical attention when you need it. Book online and get confirmed consultation slots on the same day without long waiting times.'
-  },
-  {
-    title: 'Transparent Pricing',
-    description: 'Zero hidden charges. Know the complete cost of your sessions, medications, and treatments upfront before starting any plan.'
-  },
-  {
-    title: 'High Success Rate',
-    description: 'Over 1,500+ happy patients successfully treated across Hosur, Krishnagiri, and Bangalore with visible, highly rewarding transformations.'
-  }
-];
-
-export const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Anitha R.',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Acne & Scar Treatment',
-    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'I was suffering from severe painful acne for 3 years. After booking a free consultation here, the doctor explained the root cause and gave me a 3-month treatment plan. Now my skin is 90% clear and the scars are barely visible! Truly the best dermatologist in Hosur.'
-  },
-  {
-    id: '2',
-    name: 'Karthik Raja',
-    city: 'Krishnagiri',
-    rating: 5,
-    treatment: 'PRP Hair Therapy',
-    avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'My hair fall was extreme, and I was losing confidence. I took 5 sessions of PRP and GFC therapy here. The results are amazing! My hair density has increased and hair fall has completely stopped. Doctors are extremely professional and friendly.'
-  },
-  {
-    id: '3',
-    name: 'Priyanka Sen',
-    city: 'Hosur (Shanthi Nagar)',
-    rating: 5,
-    treatment: 'Pigmentation Treatment',
-    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'I had dark patches on my cheeks (Melasma) due to sun exposure. The chemical peel sessions here did magic. My skin is bright, even-toned, and feels super fresh. Excellent care at very reasonable prices.'
-  },
-  {
-    id: '4',
-    name: 'Vikram S.',
-    city: 'Bangalore Outskirts',
-    rating: 5,
-    treatment: 'Hair Regrowth Treatment',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Travelled from Bangalore border for my hair treatment. The Free consultation offer is 100% genuine. The doctor advised GFC instead of pushing for expensive transplant directly. Highly honest team and great hygiene!'
-  },
-  {
-    id: '5',
-    name: 'Meenakshi Sundaram',
-    city: 'Denkanikottai',
-    rating: 5,
-    treatment: 'Skin Brightening Glow',
-    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'I booked a skin brightening session before my wedding. The results were fantastic, natural, and my skin was glowing throughout the marriage events. All my family members appreciated it. Thanks to the amazing doctors.'
-  },
-  {
-    id: '6',
-    name: 'Suresh Kumar',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Baldness & PRP Treatment',
-    avatarUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Very professional clinic. The scalp analysis showed exactly where thinning was happening. I completed 4 sessions of hair regrowth therapy and the crown bald patch is now covered with healthy hair.'
-  },
-  {
-    id: '7',
-    name: 'Deepika Mohan',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Pimple & Chemical Peel',
-    avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Had severe pimples before my college placements. The doctors prescribed a gentle peel and topical creams. Within 2 weeks, my pimples dried up and spots started fading. Gave me so much confidence!'
-  },
-  {
-    id: '8',
-    name: 'Arun Prasath',
-    city: 'Krishnagiri',
-    rating: 5,
-    treatment: 'Warts & Mole Removal',
-    avatarUrl: 'https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Had 12 warts on my neck. The doctor removed them in a single painless laser session. Excellent healing, zero scars left. Extremely satisfied with the treatment quality!'
-  },
-  {
-    id: '9',
-    name: 'Sangeetha G.',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Anti Aging Therapy',
-    avatarUrl: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Started noticing fine lines and saggy skin near the jawline. The lifting treatments here have given me a very youthful and natural appearance. No surgery, pure clinical science.'
-  },
-  {
-    id: '10',
-    name: 'Harish Babu',
-    city: 'Denkanikottai',
-    rating: 5,
-    treatment: 'Dandruff & Scaling',
-    avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'My scalp was constantly itchy and flaky. After just 2 sessions of clinical anti-dandruff scaling and specialized lotion, the flakes are 100% gone and my scalp feels incredibly clean.'
-  },
-  {
-    id: '11',
-    name: 'Ramya Krishnan',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Dark Circles & Skin Glow',
-    avatarUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'The doctors here are very detailed. They checked my blood reports to address internal deficiencies causing dark spots and circles, alongside external laser treatment. Outstanding holistic approach.'
-  },
-  {
-    id: '12',
-    name: 'Nitin Roy',
-    city: 'Hosur (Rayakottai Rd)',
-    rating: 5,
-    treatment: 'Hair Transplant Consultation',
-    avatarUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Had a detailed hair mapping and graft analysis. The surgeon explained the entire FUE process, hairline mapping, and graft numbers honestly without trying to oversell. Extremely trustable!'
-  },
-  {
-    id: '13',
-    name: 'Shalini P.',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Acne Scar Laser',
-    avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Completed 3 sessions of fractional CO2 laser for my deep acne pits. My skin texture is now incredibly smooth, and friends are asking me what treatment I did. Thank you so much, doctor!'
-  },
-  {
-    id: '14',
-    name: 'Madhavan E.',
-    city: 'Tamil Nadu Border',
-    rating: 5,
-    treatment: 'PRP Hair Growth',
-    avatarUrl: 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Highly recommend the PRP package. Compared to Bangalore clinics, the price here is highly affordable, and the results are identical. Very hygienic clinical rooms and professional staff.'
-  },
-  {
-    id: '15',
-    name: 'Nandhini Devi',
-    city: 'Hosur',
-    rating: 5,
-    treatment: 'Skin Glow Treatment',
-    avatarUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de215f?auto=format&fit=crop&w=120&h=120&q=80',
-    isVerified: true,
-    review: 'Best clinic in Shanthi Nagar. The Free consultation got me exactly what I needed. They suggested a simple skin routine that solved all my dry skin issues without putting me on heavy chemicals.'
+    id: 'hair-fall-control',
+    name: 'Hair Fall Control',
+    description: 'Scientific scalp diagnostics, nutritional deficiency correction, and dermatological protocols to arrest acute & progressive hair loss.',
+    benefits: ['Halts active excessive hair fall', 'Strengthens root anchorage', 'Dermatologist-guided customized protocol']
   }
 ];
 
 export const beforeAfterCases: BeforeAfterCase[] = [
   {
-    id: 'case-skin-1',
-    title: 'Acne Scars & Skin Texture Renewal',
-    category: 'skin',
-    treatmentName: 'MNRF + Fractional CO2 Laser Combo',
-    beforeImg: beforeAfter1,
-    afterImg: beforeAfter1,
-    details: 'Visible reduction in deep pitted acne scars and uneven texture within 8 weeks.',
-    duration: '8 Weeks'
-  },
-  {
-    id: 'case-hair-1',
+    id: 'case-1',
     title: 'Hair Regrowth & Density Restoration',
-    category: 'hair',
-    treatmentName: 'GFC + PRP Hair Growth Therapy',
-    beforeImg: beforeAfter2,
-    afterImg: beforeAfter2,
-    details: 'Significant regrowth on crown scalp area with increased hair shaft thickness.',
-    duration: '12 Weeks'
+    treatment: 'Excell GFC & PRP Therapy',
+    sessions: '4 Sessions over 3 Months',
+    description: 'Significant reduction in crown thinning and healthy new hairline density.',
+    beforeImage: beforeAfter1,
+    afterImage: beforeAfter1
   },
   {
-    id: 'case-skin-2',
-    title: 'Pigmentation & Melasma Clearance',
-    category: 'skin',
-    treatmentName: 'Q-Switched Laser + Medi-Peel',
-    beforeImg: beforeAfter3,
-    afterImg: beforeAfter3,
-    details: 'Clearance of stubborn epidermal pigmentation and dark spots with skin tone evening.',
-    duration: '6 Weeks'
+    id: 'case-2',
+    title: 'Acne Scar Smoothing & Texture Renewal',
+    treatment: 'MNRF & Meso Glow Therapy',
+    sessions: '3 Sessions over 8 Weeks',
+    description: 'Deep pitted acne scars visibly smoothed with balanced skin complexion.',
+    beforeImage: beforeAfter2,
+    afterImage: beforeAfter2
   },
   {
-    id: 'case-hair-2',
-    title: 'Hairline Thinning & Scalp Revitalization',
-    category: 'hair',
-    treatmentName: 'Advanced Hair Mesotherapy',
-    beforeImg: beforeAfter4,
-    afterImg: beforeAfter4,
-    details: 'Strengthened hair roots and reduced daily shedding from 150+ to normal strands.',
-    duration: '10 Weeks'
+    id: 'case-3',
+    title: 'Scalp Detox & Dandruff Elimination',
+    treatment: 'Anti-Dandruff Scalp Clarifying',
+    sessions: '2 Sessions over 4 Weeks',
+    description: 'Complete clearance of stubborn flaking, reduced irritation and root strengthening.',
+    beforeImage: beforeAfter3,
+    afterImage: beforeAfter3
   },
   {
-    id: 'case-skin-3',
-    title: 'Skin Brightening & Glow Transformation',
-    category: 'skin',
-    treatmentName: 'Hydra-Facial & Glutathione Glow Therapy',
-    beforeImg: beforeAfter5,
-    afterImg: beforeAfter5,
-    details: 'Restored skin hydration, instant radiance, and reduced sun tan marks.',
-    duration: '4 Weeks'
+    id: 'case-4',
+    title: 'Facial Brightening & Glow Rejuvenation',
+    treatment: 'Carbon Laser & Glutathione Care',
+    sessions: '3 Sessions over 6 Weeks',
+    description: 'Faded stubborn sun spots, narrowed pores, and radiant luminous skin.',
+    beforeImage: beforeAfter4,
+    afterImage: beforeAfter4
+  },
+  {
+    id: 'case-5',
+    title: 'Permanent Silky Smooth Skin',
+    treatment: 'Full Body Laser Hair Removal',
+    sessions: '5 Sessions over 5 Months',
+    description: 'Over 95% permanent reduction with zero ingrown hairs or irritation.',
+    beforeImage: beforeAfter5,
+    afterImage: beforeAfter5
+  }
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 't-1',
+    name: 'Karthik Raja',
+    rating: 5,
+    treatment: 'Hair Transplant & GFC',
+    review: 'Bonitaa Clinic provided wonderful results. My hair thinning stopped completely within 2 months of GFC sessions, and the newly transplanted hairline looks 100% natural. Highly recommended in Hosur!',
+    date: '2 weeks ago'
+  },
+  {
+    id: 't-2',
+    name: 'Priyanka Sharma',
+    rating: 5,
+    treatment: 'Anti Acne & MNRF',
+    review: 'I suffered from chronic cystic acne and dark marks for years. The doctors gave a clear roadmap with medical peels and MNRF. My face is completely clear now without scarring.',
+    date: '1 month ago'
+  },
+  {
+    id: 't-3',
+    name: 'Suresh Kumar',
+    rating: 5,
+    treatment: 'PRP Hair Regrowth',
+    review: 'Very professional, clean clinic with advanced equipment. The free consultation was very informative and transparent. Visible difference in hair volume after 3 sessions.',
+    date: '3 weeks ago'
+  },
+  {
+    id: 't-4',
+    name: 'Divya Venkatesh',
+    rating: 5,
+    treatment: 'Carbon Laser & Glow',
+    review: 'Had the carbon laser peel before my sister’s wedding. Instant glow, completely painless, and my skin felt so smooth and clear. Best dermatology clinic in Hosur!',
+    date: 'Just recently'
+  }
+];
+
+export const clinicHighlights = [
+  {
+    title: 'US-FDA Approved Tech',
+    description: 'Equipped with gold-standard dermatological lasers, cold photobiomodulation, and sterile growth factor kits.'
+  },
+  {
+    title: 'Expert Senior Doctors',
+    description: 'Qualified dermatologists and trichologists with 12+ years of clinical aesthetic experience.'
+  },
+  {
+    title: '10,000+ Happy Patients',
+    description: 'Over 10,000+ successful transformations across Hosur, Krishnagiri, and surrounding regions.'
+  },
+  {
+    title: 'Zero Hidden Costs',
+    description: 'Transparent pricing with free initial clinical scalp and skin diagnostics for online registrations.'
   }
 ];

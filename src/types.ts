@@ -8,28 +8,25 @@ export interface Treatment {
 export interface Testimonial {
   id: string;
   name: string;
-  city: string;
   rating: number;
-  review: string;
   treatment: string;
-  avatarUrl: string;
-  isVerified: boolean;
-}
-
-export interface LeadFormInput {
-  fullName: string;
-  mobileNumber: string;
-  email: string;
-  consultationType: 'Online' | 'In-Clinic';
+  review: string;
+  date: string;
 }
 
 export interface BeforeAfterCase {
   id: string;
   title: string;
-  category: 'skin' | 'hair';
-  treatmentName: string;
-  beforeImg: string;
-  afterImg: string;
-  details: string;
-  duration: string;
+  treatment: string;
+  sessions: string;
+  description: string;
+  beforeImage: string;
+  afterImage: string;
+}
+
+export interface LeadFormData {
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  consultationType: string;
 }
