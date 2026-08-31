@@ -39,7 +39,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Over 1,500+ Happy Patients Treated in Hosur
+            Over 10,000+ Happy Patients Treated in Hosur
           </h2>
 
           <p className="text-sm sm:text-base text-zinc-400 mt-3 leading-relaxed">
@@ -63,7 +63,7 @@ export const TestimonialsSection: React.FC = () => {
                 Google 4.9-Star Verified Rating
               </h3>
               <p className="text-xs text-zinc-400 mt-0.5">
-                Based on 1,500+ verified clinic consultations in Hosur, Krishnagiri & surrounding areas.
+                Based on 10,000+ verified clinic consultations in Hosur, Krishnagiri & surrounding areas.
               </p>
             </div>
           </div>

@@ -110,16 +110,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
 
             {/* Paragraph Description */}
             <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
-              Advanced, FDA-approved clinical solutions for <strong className="text-white font-semibold">Warts & Mole Removal</strong>, <strong className="text-white font-semibold">PRP & GFC Hair Growth</strong>, and <strong className="text-white font-semibold">Acne Scar Treatments</strong>. Get treated by senior dermatologists in Hosur. Free Consultation for all online registrations today.
+              Advanced, FDA-approved clinical solutions for <strong className="text-white font-semibold">Hair Transplant, Excell GFC, PRP & GFC Hair Growth, Hair Fall Control, Anti-Dandruff, Microneedling, Laser Hair Therapy, Anti-Acne, Botox & Fillers, MNRF, Meso Glow, Glutathione, Carbon Laser Therapy & Full-Body Laser Hair Removal</strong>. Get treated by senior dermatologists in <strong className="text-white font-semibold">Hosur</strong>. <strong className="text-[#e6b133] font-semibold">Free Consultation</strong> for all online registrations today.
             </p>
-
-            {/* Hashtag Pills */}
-            <div className="flex flex-wrap gap-2 pt-1 text-xs text-zinc-400 font-mono">
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#SkinSpecialistHosur</span>
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#WartsTreatment</span>
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#GFCHairTherapy</span>
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800">#AcneScarRemodeling</span>
-            </div>
 
             {/* Stats Metric Row */}
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 pt-3 pb-2 border-y border-zinc-800/80">
@@ -136,7 +128,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
               <div className="text-center sm:text-left border-l border-zinc-800/80 pl-3">
                 <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
                   <Users className="w-4 h-4 text-[#e6b133]" />
-                  <span>1,500+</span>
+                  <span>10,000+</span>
                 </div>
                 <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
                   HAPPY PATIENTS
@@ -146,7 +138,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
               <div className="text-center sm:text-left border-l border-zinc-800/80 pl-3">
                 <div className="text-lg sm:text-xl font-extrabold text-white flex items-center justify-center sm:justify-start gap-1">
                   <Award className="w-4 h-4 text-[#e6b133]" />
-                  <span>12+ Yrs</span>
+                  <span>15+ Yrs</span>
                 </div>
                 <div className="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wider uppercase mt-0.5">
                   EXPERT DOCTORS

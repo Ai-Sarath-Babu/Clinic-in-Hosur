@@ -15,182 +15,160 @@ export const TOP_BAR_ITEMS = [
 
 export const SKIN_TREATMENTS: Treatment[] = [
   {
-    id: "acne-treatment",
-    name: "Acne Treatment",
+    id: "anti-acne",
+    name: "Anti-Acne Treatment",
     category: "skin",
-    description: "Advanced clinical solutions to control active acne breakouts and prevent future recurrences.",
+    description: "Clinical dermatologist solutions to eradicate active acne breakouts, deep cysts, and prevent future recurrences.",
     benefits: [
-      "Reduces active pimples",
-      "Controls excess sebum production",
-      "Prevents permanent scarring"
+      "Rapidly reduces active acne & pimples",
+      "Controls excess sebum & oil production",
+      "Prevents post-acne dark spots & scarring"
     ]
   },
   {
-    id: "pimple-treatment",
-    name: "Pimple Treatment",
+    id: "botox-fillers",
+    name: "Botox & Fillers",
     category: "skin",
-    description: "Targeted deep-pore therapy to clear blackheads, whiteheads, and painful red pustules quickly.",
+    description: "US-FDA approved neuromodulators and hyaluronic acid fillers for softening dynamic wrinkles and restoring facial contours.",
     benefits: [
-      "Rapid redness reduction",
-      "Unclogs congested pores",
-      "Gentle on sensitive skin"
+      "Softens forehead lines & crow's feet",
+      "Restores cheek & under-eye volume",
+      "Natural-looking, youthful rejuvenation"
     ]
   },
   {
-    id: "scar-removal",
-    name: "Scar Removal",
+    id: "mnrf-meso-glow",
+    name: "MNRF & Meso Glow",
     category: "skin",
-    description: "Fractional laser & microneedling treatments to smooth deep pitted scars and uneven skin texture.",
+    description: "Micro-Needling Radio Frequency combined with meso-nutrient infusion for deep scar remodeling and radiant glass skin.",
     benefits: [
-      "Stimulates fresh collagen",
-      "Fades deep ice-pick scars",
-      "Improves overall skin elasticity"
+      "Smooths deep pitted acne scars",
+      "Tightens open pores & lax skin",
+      "Delivers instant lit-from-within glow"
     ]
   },
   {
-    id: "pigmentation-treatment",
-    name: "Pigmentation Treatment",
+    id: "glutathione-skin",
+    name: "Glutathione Treatment for Skin",
     category: "skin",
-    description: "Dermatological peeling and laser toning to correct dark spots, sun damage, and uneven skin tone.",
+    description: "High-grade master antioxidant therapy to inhibit melanin synthesis, reduce hyperpigmentation, and illuminate dull skin.",
     benefits: [
-      "Fades dark spots",
-      "Restores uniform complexion",
-      "Inhibits melanin overproduction"
+      "Fades stubborn pigmentation & melasma",
+      "Promotes full-body luminous clarity",
+      "Powerful cellular anti-aging detox"
     ]
   },
   {
-    id: "melasma-treatment",
-    name: "Melasma Treatment",
+    id: "excell-gfc-skin",
+    name: "Excell GFC Skin Rejuvenation",
     category: "skin",
-    description: "Specialized clinical protocols combining topical therapies and gentle peels for stubborn mask-like pigmentation.",
+    description: "Autologous concentrated growth factors infused to stimulate neo-collagenesis, improve elasticity, and smooth fine lines.",
     benefits: [
-      "Targets deep dermal pigment",
-      "Evens out skin patches",
-      "Long-term maintenance plans"
+      "Boosts natural collagen by 300%",
+      "Smooths crepey skin & fine wrinkles",
+      "100% natural, biological treatment"
     ]
   },
   {
-    id: "chemical-peel",
-    name: "Chemical Peel",
+    id: "carbon-laser-therapy",
+    name: "Carbon Laser Therapy",
     category: "skin",
-    description: "Medical-grade exfoliating peels to shed dead skin layers and reveal a fresh, glowing complexion underneath.",
+    description: "Popular 'Hollywood Carbon Peel' using laser photo-acoustic energy to purify pores, exfoliate dead cells, and tone skin.",
     benefits: [
-      "Smooths fine lines",
-      "Instantly brightens dull skin",
-      "Exfoliates dead skin cells"
+      "Instantly shrinks enlarged pores",
+      "Clears stubborn blackheads & impurities",
+      "Zero downtime with instant radiance"
     ]
   },
   {
-    id: "anti-aging-treatment",
-    name: "Anti-Aging Treatment",
+    id: "full-body-laser-hair-removal",
+    name: "Full-Body Laser Hair Removal",
     category: "skin",
-    description: "Non-surgical skin tightening, wrinkle reduction, and youth-restoring dermal treatments.",
+    description: "Advanced multi-wavelength painless cooling laser for permanent hair reduction across face, arms, legs, and full body.",
     benefits: [
-      "Tightens sagging facial skin",
-      "Softens fine lines & wrinkles",
-      "Restores natural youthful volume"
-    ]
-  },
-  {
-    id: "skin-brightening",
-    name: "Skin Brightening",
-    category: "skin",
-    description: "Hydrating dermal infusions and antioxidant therapies to give your skin a luminous, healthy glow.",
-    benefits: [
-      "Deep cellular hydration",
-      "Boosts natural skin radiance",
-      "Provides healthy, glass-like skin"
+      "90%+ permanent hair reduction",
+      "Pain-free contact cooling crystal tip",
+      "Safe and effective for all Indian skin types"
     ]
   }
 ];
 
 export const HAIR_TREATMENTS: Treatment[] = [
   {
-    id: "gfc-therapy",
-    name: "Advanced GFC Therapy",
+    id: "hair-transplant",
+    name: "Hair Transplant (FUE & Micro-Grafting)",
     category: "hair",
-    description: "Harness your own autologous growth factors to revive dormant hair roots with 3x higher biological potency.",
+    description: "Painless micro-follicular extraction and high-density implantation for permanent, natural hairline and crown restoration.",
+    benefits: [
+      "Permanent, 100% natural growing hair",
+      "Virtually invisible micro-scars",
+      "Maximum graft survival rate guaranteed"
+    ]
+  },
+  {
+    id: "excell-gfc-hair",
+    name: "Excell GFC Therapy",
+    category: "hair",
+    description: "Next-gen autologous Growth Factor Concentrate engineered with 3x higher biological potency to reactivate dormant hair roots.",
     benefits: [
       "Stimulates dormant hair follicles",
-      "Zero pain & zero risk of rejection",
-      "Noticeable density gain in 3-4 sessions"
+      "Painless with zero risk of allergy",
+      "Visible density increase in 3-4 sessions"
     ]
   },
   {
-    id: "prp-hair-treatment",
-    name: "PRP Hair Therapy",
+    id: "prp-gfc-hair",
+    name: "PRP & GFC Hair Growth",
     category: "hair",
-    description: "Platelet-Rich Plasma micro-injections rich in cellular cytokines to arrest hair thinning and promote shaft thickening.",
+    description: "Synergistic Platelet-Rich Plasma and Growth Factor protocol to halt active shedding, strengthen follicles, and thicken thinning hair.",
     benefits: [
-      "Reduces active hair shedding",
-      "Thickens existing hair shafts",
-      "Safe, natural biological treatment"
-    ]
-  },
-  {
-    id: "hair-transplant",
-    name: "FUE Hair Transplant",
-    category: "hair",
-    description: "Painless micro-follicular extraction and precision slit implantation for permanent, natural hairline restoration.",
-    benefits: [
-      "Permanent & natural growth",
-      "Virtually invisible micro-scars",
-      "Maximum graft survival guarantee"
-    ]
-  },
-  {
-    id: "anti-dandruff",
-    name: "Anti-Dandruff Scalp Treatment",
-    category: "hair",
-    description: "Deep medical scalp detox to eradicate stubborn fungal dandruff, scaling, itchiness, and folliculitis.",
-    benefits: [
-      "Deep clarifies congested scalp",
-      "Eradicates fungal micro-organisms",
-      "Soothes itching and redness"
-    ]
-  },
-  {
-    id: "micro-needling-scalp",
-    name: "Scalp Microneedling",
-    category: "hair",
-    description: "Targeted dermaroller micro-punctures to trigger natural collagen synthesis and enhance topical peptide absorption.",
-    benefits: [
-      "Increases nutrient absorption 5x",
-      "Triggers micro-vascular circulation",
-      "Revitalizes weakened roots"
-    ]
-  },
-  {
-    id: "lllt-laser",
-    name: "Low Level Laser Therapy (LLLT)",
-    category: "hair",
-    description: "Cold laser bio-stimulation delivering cellular ATP photons to energize weakened hair matrix cells.",
-    benefits: [
-      "100% painless & non-invasive",
-      "Enhances scalp micro-circulation",
-      "Complements PRP and GFC protocols"
+      "Halts excessive daily hair fall",
+      "Thickens thin, miniaturized hair shafts",
+      "Safe, biological cell-signaling therapy"
     ]
   },
   {
     id: "hair-fall-control",
     name: "Hair Fall Control Protocol",
     category: "hair",
-    description: "Multi-modal trichological diagnosis and custom topical/oral formulations to rapidly halt acute shedding.",
+    description: "Clinical trichological diagnostics paired with targeted medical therapies to arrest rapid hair shedding and reinforce root anchors.",
     benefits: [
-      "Diagnoses root deficiency causes",
-      "Halts active hair shedding",
-      "Restores scalp balance"
+      "Diagnoses root hormonal & nutritional causes",
+      "Rapidly stabilizes active shedding",
+      "Restores scalp and follicle health"
     ]
   },
   {
-    id: "alopecia-care",
-    name: "Alopecia Areata Care",
+    id: "anti-dandruff-treatment",
+    name: "Anti-Dandruff Treatment",
     category: "hair",
-    description: "Specialized anti-inflammatory localized intralesional therapy for circular bald patches.",
+    description: "Clinical deep scalp detox and therapeutic antifungals to eliminate chronic dandruff, flakes, itchiness, and scalp inflammation.",
     benefits: [
-      "Controls autoimmune hair loss",
-      "Re-stimulates patchy hair growth",
-      "Monitored under senior dermatologist"
+      "Deeply clarifies congested scalp pores",
+      "Eradicates fungal micro-organisms",
+      "Instantly soothes itching and irritation"
+    ]
+  },
+  {
+    id: "micro-needling-scalp",
+    name: "Scalp Microneedling",
+    category: "hair",
+    description: "Precision dermaroller and micro-needling stimulation to trigger microvascular circulation and supercharge growth peptide absorption.",
+    benefits: [
+      "Boosts growth factor absorption 5x",
+      "Triggers micro-vascular blood supply",
+      "Revitalizes weakened follicular roots"
+    ]
+  },
+  {
+    id: "low-level-laser-hair-therapy",
+    name: "Low Level Laser Hair Therapy (LLLT)",
+    category: "hair",
+    description: "FDA-cleared therapeutic cold laser bio-stimulation delivering ATP cellular energy to energize weakened hair matrix cells.",
+    benefits: [
+      "100% painless and non-invasive",
+      "Enhances scalp cellular oxygenation",
+      "Complements PRP and GFC growth cycles"
     ]
   }
 ];
@@ -257,7 +235,7 @@ export const TRUST_FACTORS: TrustFactor[] = [
   {
     id: "experienced-doctors",
     title: "Experienced Doctors",
-    description: "Consult with double-board certified senior dermatologists and hair transplant specialists with 12+ years of experience.",
+    description: "Consult with double-board certified senior dermatologists and hair transplant specialists with 15+ years of experience.",
     iconName: "Stethoscope"
   },
   {
