@@ -12,7 +12,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   return (
     <header id="main-header" className="sticky top-0 z-50 bg-[#0a0a0b]/95 backdrop-blur-md border-b border-zinc-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-3 group">
@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
               <img 
                 src="/assets/bonitaa_clinic_logo.png" 
                 alt="Bonitaa Skin & Hair Care Hosur" 
-                className="h-12 w-auto object-contain"
+                className="h-9 sm:h-12 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
             </div>

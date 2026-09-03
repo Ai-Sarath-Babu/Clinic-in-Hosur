@@ -38,7 +38,7 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans antialiased selection:bg-[#e6b133] selection:text-black">
+    <div className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans antialiased selection:bg-[#e6b133] selection:text-black pb-14 lg:pb-0">
       {/* 1. Top Announcement Bar */}
       <TopBar />
 
