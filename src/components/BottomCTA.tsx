@@ -4,9 +4,10 @@ import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL, CLINIC_NAME, CLINIC_LOCATION }
 
 interface BottomCTAProps {
   onBookClick: () => void;
+  onNavigatePolicy?: () => void;
 }
 
-export const BottomCTA: React.FC<BottomCTAProps> = ({ onBookClick }) => {
+export const BottomCTA: React.FC<BottomCTAProps> = ({ onBookClick, onNavigatePolicy }) => {
   return (
     <div className="bg-[#0c0c0e] border-t border-zinc-900">
       
@@ -94,11 +95,23 @@ export const BottomCTA: React.FC<BottomCTAProps> = ({ onBookClick }) => {
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-5 sm:gap-6">
             <a href="#treatments" className="hover:text-white transition">Treatments</a>
             <a href="#success-stories" className="hover:text-white transition">Success Stories</a>
             <a href="#why-choose-us" className="hover:text-white transition">Why Choose Us</a>
             <a href="#patient-reviews" className="hover:text-white transition">Patient Reviews</a>
+            <a 
+              href="/privacy-policy" 
+              onClick={(e) => {
+                if (onNavigatePolicy) {
+                  e.preventDefault();
+                  onNavigatePolicy();
+                }
+              }}
+              className="hover:text-[#e6b133] transition"
+            >
+              Privacy Policy
+            </a>
             <a 
               href="https://maps.google.com/?q=Bonitaa+Skin+and+Hair+Care+Hosur" 
               target="_blank" 

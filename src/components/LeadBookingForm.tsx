@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Calendar, Clock, Sparkles, CheckCircle2, Phone, User, Mail, Check } from 'lucide-react';
 import { LeadFormData } from '../types';
+import { FORMSPREE_ENDPOINT, CLINIC_NAME, CLINIC_LOCATION } from '../data';
 
 interface LeadBookingFormProps {
   onSuccess?: (data: LeadFormData) => void;
   inline?: boolean;
+  onNavigatePolicy?: () => void;
 }
 
-export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inline = false }) => {
+export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inline = false, onNavigatePolicy }) => {
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
     phoneNumber: '',
@@ -41,20 +43,22 @@ export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inl
     setLoading(true);
 
     try {
-      // Simulate or Formspree integration
-      const response = await fetch('https://formspree.io/f/mqaeedzo', {
+      // Post to Formspree
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          fullName: formData.fullName,
-          phone: formData.phoneNumber,
-          email: formData.email || 'Not provided',
+          fullName: formData.fullName.trim(),
+          phone: formData.phoneNumber.trim(),
+          email: formData.email?.trim() || 'Not provided',
           consultationType: formData.consultationType,
           submissionTime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-          source: 'Hosur Landing Page'
+          source: 'Lead Booking Form',
+          clinic: CLINIC_NAME,
+          location: CLINIC_LOCATION
         })
       });
 
@@ -64,7 +68,7 @@ export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inl
           onSuccess(formData);
         }
       } else {
-        // Still treat as success for user experience and forward to consultation
+        // Still treat as success for user experience and forward to confirmation
         setSubmitted(true);
         if (onSuccess) {
           onSuccess(formData);
@@ -125,7 +129,15 @@ export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inl
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form 
+        action={FORMSPREE_ENDPOINT} 
+        method="POST" 
+        onSubmit={handleSubmit} 
+        className="space-y-4"
+      >
+        <input type="hidden" name="source" value="Lead Booking Form" />
+        <input type="hidden" name="clinic" value={CLINIC_NAME} />
+        <input type="hidden" name="location" value={CLINIC_LOCATION} />
         <div>
           <label className="block text-xs font-medium text-gray-300 mb-1.5">
             Full Name <span className="text-[#e6b133]">*</span>
@@ -227,10 +239,19 @@ export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inl
         </button>
 
         <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
-          <span className="flex items-center gap-1">
+          <a
+            href="/privacy-policy"
+            onClick={(e) => {
+              if (onNavigatePolicy) {
+                e.preventDefault();
+                onNavigatePolicy();
+              }
+            }}
+            className="flex items-center gap-1 hover:text-[#e6b133] transition"
+          >
             <ShieldCheck className="w-3.5 h-3.5 text-[#e6b133]" />
-            100% Privacy Guaranteed
-          </span>
+            <span>100% Privacy Guaranteed</span>
+          </a>
           <span>⚡ Instant Callback</span>
         </div>
       </form>

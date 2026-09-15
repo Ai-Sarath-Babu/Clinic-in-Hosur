@@ -5,6 +5,7 @@ export const CLINIC_PHONE_DISPLAY = "9626615566";
 export const CLINIC_PHONE_INTL = "+919626615566";
 export const CLINIC_NAME = "BONITAA SKIN AND HAIR CARE";
 export const CLINIC_LOCATION = "Hosur, Shanthi Nagar";
+export const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdaryoeg";
 
 export const TOP_BAR_ITEMS = [
   { text: "100% FREE CONSULTATION OFFER (ACTIVE TODAY)", icon: "Gift" },
@@ -23,17 +24,6 @@ export const SKIN_TREATMENTS: Treatment[] = [
       "Rapidly reduces active acne & pimples",
       "Controls excess sebum & oil production",
       "Prevents post-acne dark spots & scarring"
-    ]
-  },
-  {
-    id: "botox-fillers",
-    name: "Botox & Fillers",
-    category: "skin",
-    description: "US-FDA approved neuromodulators and hyaluronic acid fillers for softening dynamic wrinkles and restoring facial contours.",
-    benefits: [
-      "Softens forehead lines & crow's feet",
-      "Restores cheek & under-eye volume",
-      "Natural-looking, youthful rejuvenation"
     ]
   },
   {
@@ -59,8 +49,8 @@ export const SKIN_TREATMENTS: Treatment[] = [
     ]
   },
   {
-    id: "excell-gfc-skin",
-    name: "Excell GFC Skin Rejuvenation",
+    id: "excel-gfc-skin",
+    name: "Excel GFC Skin Rejuvenation",
     category: "skin",
     description: "Autologous concentrated growth factors infused to stimulate neo-collagenesis, improve elasticity, and smooth fine lines.",
     benefits: [
@@ -106,8 +96,8 @@ export const HAIR_TREATMENTS: Treatment[] = [
     ]
   },
   {
-    id: "excell-gfc-hair",
-    name: "Excell GFC Therapy",
+    id: "excel-gfc-hair",
+    name: "Excel GFC Therapy",
     category: "hair",
     description: "Next-gen autologous Growth Factor Concentrate engineered with 3x higher biological potency to reactivate dormant hair roots.",
     benefits: [
@@ -191,7 +181,7 @@ export const BEFORE_AFTER_CASES: BeforeAfterCase[] = [
     tabLabel: "Hair Case",
     tag: "HAIR TRANSFORMATION",
     title: "Crown Density & Hairline Thickening",
-    treatmentName: "Excell GFC + PRP Growth Therapy (4 Sessions)",
+    treatmentName: "Excel GFC + PRP Growth Therapy (4 Sessions)",
     period: "12 Weeks",
     report: "Marked increase in follicular thickness and complete coverage of crown thinning patch.",
     image: "/assets/result_1.jpeg"
@@ -391,7 +381,7 @@ export const REVIEWS: Testimonial[] = [
     location: "Hosur Rayakottai Road",
     category: "hair",
     rating: 5,
-    treatment: "Excell GFC Hair Regrowth",
+    treatment: "Excel GFC Hair Regrowth",
     review: "Best experience with GFC hair therapy. Zero pain during injections and visible hair sprouting in 2 months. Strongly recommended clinic for hair problems in Hosur."
   },
   {

@@ -14,15 +14,16 @@ import {
   Laptop, 
   Building2 
 } from 'lucide-react';
-import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL } from '../data';
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL, CLINIC_NAME, CLINIC_LOCATION, FORMSPREE_ENDPOINT } from '../data';
 import { LeadFormData } from '../types';
 
 interface HeroSectionProps {
   onFormSubmit: (data: LeadFormData) => void;
   onBookClick: () => void;
+  onNavigatePolicy?: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookClick }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookClick, onNavigatePolicy }) => {
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
     phoneNumber: '',
@@ -49,17 +50,45 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
     return () => clearInterval(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.phoneNumber) {
-      alert('Please fill in your name and phone number.');
+    if (!formData.fullName.trim()) {
+      alert('Please fill in your name.');
       return;
     }
+    const cleanPhone = formData.phoneNumber.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      alert('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      onFormSubmit(formData);
+
+    try {
+      // POST to Formspree Endpoint
+      await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName.trim(),
+          phone: formData.phoneNumber.trim(),
+          email: formData.email?.trim() || 'Not provided',
+          consultationType: formData.consultationType,
+          submissionTime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          source: 'Hero Section Lead Form',
+          clinic: CLINIC_NAME,
+          location: CLINIC_LOCATION
+        })
+      });
+    } catch (err) {
+      console.warn('Formspree transmission error (continuing to confirmation):', err);
+    } finally {
       setIsSubmitting(false);
-    }, 400);
+      onFormSubmit(formData);
+    }
   };
 
   const formatTimer = () => {
@@ -146,7 +175,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
 
             {/* Paragraph Description */}
             <p className="text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
-              Advanced, FDA-approved clinical solutions for <strong className="text-white font-semibold">Hair Transplant, Excell GFC, PRP & GFC Hair Growth, Hair Fall Control, Anti-Dandruff, Microneedling, Laser Hair Therapy, Anti-Acne, Botox & Fillers, MNRF, Meso Glow, Glutathione, Carbon Laser Therapy & Full-Body Laser Hair Removal</strong>. Get treated by senior dermatologists in <strong className="text-white font-semibold">Hosur</strong>. <strong className="text-[#e6b133] font-semibold">Free Consultation</strong> for all online registrations today.
+              Advanced, FDA-approved clinical solutions for <strong className="text-white font-semibold">Hair Transplant, Excel GFC, PRP & GFC Hair Growth, Hair Fall Control, Anti-Dandruff, Microneedling, Laser Hair Therapy, Anti-Acne, MNRF, Meso Glow, Glutathione, Carbon Laser Therapy & Full-Body Laser Hair Removal</strong>. Get treated by senior dermatologists in <strong className="text-white font-semibold">Hosur</strong>. <strong className="text-[#e6b133] font-semibold">Free Consultation</strong> for all online registrations today.
             </p>
 
             {/* Stats Metric Row */}
@@ -279,7 +308,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
               </div>
 
               {/* Booking Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form 
+                action={FORMSPREE_ENDPOINT} 
+                method="POST" 
+                onSubmit={handleSubmit} 
+                className="space-y-4"
+              >
+                <input type="hidden" name="consultationType" value={formData.consultationType} />
+                <input type="hidden" name="source" value="Hero Section Booking Form" />
+                <input type="hidden" name="clinic" value={CLINIC_NAME} />
+                <input type="hidden" name="location" value={CLINIC_LOCATION} />
                 
                 {/* Full Name */}
                 <div>
@@ -290,6 +328,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
                     <User className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="text"
+                      name="fullName"
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -310,6 +349,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
                     </div>
                     <input
                       type="tel"
+                      name="phone"
                       required
                       pattern="[0-9]{10}"
                       value={formData.phoneNumber}
@@ -329,6 +369,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
                     <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="email"
+                      name="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Enter email address"
@@ -383,7 +424,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
 
                 {/* Disclaimer */}
                 <p className="text-[10px] text-zinc-400 text-center leading-normal pt-1">
-                  By submitting, you agree to receive a confirmation call/SMS within 15 mins. Limited-time 100% Free Consultation. No payment required.
+                  By submitting, you agree to our{' '}
+                  <a
+                    href="/privacy-policy"
+                    onClick={(e) => {
+                      if (onNavigatePolicy) {
+                        e.preventDefault();
+                        onNavigatePolicy();
+                      }
+                    }}
+                    className="text-zinc-300 underline underline-offset-2 hover:text-[#e6b133] transition"
+                  >
+                    Privacy Policy
+                  </a>{' '}
+                  and to receive a confirmation call/SMS within 15 mins. Limited-time 100% Free Consultation. No payment required.
                 </p>
 
               </form>

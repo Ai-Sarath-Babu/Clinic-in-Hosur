@@ -4,10 +4,21 @@ import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_INTL } from '../data';
 
 interface NavbarProps {
   onBookClick: () => void;
+  onNavigateHome?: () => void;
+  onNavigatePolicy?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onNavigateHome, onNavigatePolicy }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onNavigateHome) {
+      onNavigateHome();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <header id="main-header" className="sticky top-0 z-50 bg-[#0a0a0b]/95 backdrop-blur-md border-b border-zinc-800/80 transition-all">
@@ -15,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group cursor-pointer">
             <div className="relative">
               <img 
                 src="/assets/bonitaa_clinic_logo.png" 
@@ -131,6 +142,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             className="block text-zinc-300 hover:text-[#e6b133] text-sm py-1.5"
           >
             Directions
+          </a>
+          <a
+            href="/privacy-policy"
+            onClick={(e) => {
+              setMobileMenuOpen(false);
+              if (onNavigatePolicy) {
+                e.preventDefault();
+                onNavigatePolicy();
+              }
+            }}
+            className="block text-zinc-300 hover:text-[#e6b133] text-sm py-1.5"
+          >
+            Privacy Policy
           </a>
           <div className="pt-2 border-t border-zinc-800 flex items-center justify-between">
             <a
