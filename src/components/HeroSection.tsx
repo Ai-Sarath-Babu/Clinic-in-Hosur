@@ -83,6 +83,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onFormSubmit, onBookCl
           location: CLINIC_LOCATION
         })
       });
+
+      // Trigger Google Ads lead conversion event
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'generate_lead', {
+          send_to: 'AW-18351602494',
+          event_category: 'Lead',
+          event_label: formData.consultationType
+        });
+      }
     } catch (err) {
       console.warn('Formspree transmission error (continuing to confirmation):', err);
     } finally {

@@ -62,6 +62,15 @@ export const LeadBookingForm: React.FC<LeadBookingFormProps> = ({ onSuccess, inl
         })
       });
 
+      // Fire Google Ads Lead conversion
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'generate_lead', {
+          send_to: 'AW-18351602494',
+          event_category: 'Lead',
+          event_label: formData.consultationType
+        });
+      }
+
       if (response.ok || response.status === 200) {
         setSubmitted(true);
         if (onSuccess) {

@@ -16,6 +16,35 @@ interface ThankYouPageProps {
 export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onReset }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Fire conversion event directly via gtag
+    try {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-18351602494/qDJLCP-64dccEL723K5E'
+        });
+      }
+    } catch {
+      // Ignore analytics errors
+    }
+
+    // Append the Event snippet script to document <head>
+    const scriptId = 'google-conversion-snippet';
+    let scriptElement = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!scriptElement) {
+      scriptElement = document.createElement('script');
+      scriptElement.id = scriptId;
+      scriptElement.type = 'text/javascript';
+      scriptElement.innerHTML = `gtag('event', 'conversion', {'send_to': 'AW-18351602494/qDJLCP-64dccEL723K5E'});`;
+      document.head.appendChild(scriptElement);
+    }
+
+    return () => {
+      const el = document.getElementById(scriptId);
+      if (el) {
+        el.remove();
+      }
+    };
   }, []);
 
   const refId = Math.floor(100000 + Math.random() * 900000);
